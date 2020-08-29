@@ -41,7 +41,7 @@ const FooterLinks = styled.ul`
     font-weight: ${style.fontWeight.semibold};
     text-transform: uppercase;
     letter-spacing: 0.025em;
-    color: ${style.color.grey48};
+    color: ${style.color.navy56};
     margin-right: 24px;
 
     :first-of-type {
@@ -70,6 +70,7 @@ const FooterLinks = styled.ul`
       }
 
       &:hover {
+        color: ${style.color.navy24};
         svg {
           opacity: 1;
         }
