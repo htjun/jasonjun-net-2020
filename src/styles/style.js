@@ -34,6 +34,7 @@ export const color = {
   blue48: 'hsl(228, 64%, 48%)',
   blue64: 'hsl(228, 64%, 64%)',
   blue72: 'hsl(228, 64%, 72%)',
+  blue92: 'hsl(228, 64%, 92%)',
   blue96: 'hsl(228, 64%, 96%)',
 }
 
@@ -119,6 +120,7 @@ export const LinkStyle = css`
   &:hover {
     @media (hover: hover) {
       background-color: hsla(228, 12%, 64%, 0.16);
+      background-color: ${color.navy94};
     }
   }
 `
@@ -337,9 +339,9 @@ export const ListItemStyle = css`
 
   .additional-cols {
     display: flex;
+    color: ${color.navy48};
 
     > div {
-      color: ${color.navy48};
       font-size: ${fontSize.sm};
       margin-left: 16px;
       word-break: break-word;

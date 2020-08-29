@@ -29,11 +29,11 @@ const PaginationWrapper = styled.div`
         ${style.LinkStyle}
 
         &:hover {
-          color: ${style.color.grey64};
+          color: ${style.color.grey24};
         }
 
         &.active {
-          color: ${style.color.grey96};
+          color: ${style.color.grey16};
           font-weight: ${style.fontWeight.semibold};
         }
       }
