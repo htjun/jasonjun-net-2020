@@ -1,0 +1,94 @@
+---
+type: 'work'
+title: 'RedBook Inspect CST Scheduler'
+date: '2018-10-01'
+company: 'carsales.com'
+responsibilities:
+  - 'Pattern library'
+  - 'UI design'
+description: 'Designed an internal tool for the customer service team to manage vehicle inspectors’ schedules more efficiently.'
+theme-color: '#545bb7'
+logo-adjustment: 0.85
+published: true
+---
+
+import { ImageContainer } from 'components/ContentBlocks'
+
+The CST scheduler app is designed for the RBI customer service team to manage vehicle inspectors' schedules efficiently. So far, the customer service team has been using multiple softwares, and doing a lot of repeated tasks to manage inspectors' schedules.
+
+We interviewed customer service team crews several times during the process and also shared the progress with them to make the tool as optimised for their processes as possible.
+
+<ImageContainer size="large">
+
+![Daily view](works-rbi-scheduler-01.png)
+
+</ImageContainer>
+<ImageContainer size="large">
+
+![Daily view - job summary](works-rbi-scheduler-02.png)
+
+</ImageContainer>
+<ImageContainer size="large">
+
+![Weekly view - job summary](works-rbi-scheduler-03.png)
+
+</ImageContainer>
+<ImageContainer size="large" grid={2} noCaption blockCaption="Workforce filtering">
+
+![Workforce filtering](works-rbi-scheduler-04.png)
+![Workforce filtering](works-rbi-scheduler-05.png)
+
+</ImageContainer>
+
+The app is designed to be a SPA (single page application) so there's no page loading during the process, and every item of data is real-time. I tried to avoid the use of modal window UI unless it was completely necessary. Instead of modal windows, the side panel area is actively used to show information based on context.
+
+<ImageContainer size="large" grid={2} noCaption blockCaption="Inspector view">
+
+![Inspector view](works-rbi-scheduler-06.png)
+![Inspector view](works-rbi-scheduler-07.png)
+
+</ImageContainer>
+<ImageContainer size="large">
+
+![Inspector view - sub sections](works-rbi-scheduler-08.png)
+
+</ImageContainer>
+<ImageContainer size="large" grid={3} noCaption blockCaption="Inspector view - mobile">
+
+![Inspector view - mobile](works-rbi-scheduler-m-01.png)
+![Inspector view - mobile](works-rbi-scheduler-m-02.png)
+![Inspector view - mobile](works-rbi-scheduler-m-03.png)
+
+</ImageContainer>
+<ImageContainer size="large">
+
+![Interaction states](works-rbi-scheduler-interactions.png)
+
+</ImageContainer>
+
+Design systems methodology has been actively used in this project. The app has many repeated UIs, which means making small changes will be increasingly difficult. To prevent this and make maintaining it efficient, I made every UI element as a Sketch symbol, which can be translated to components when it's in the development phase.
+
+<ImageContainer size="large">
+
+![Sketch symbols](works-rbi-scheduler-system-01.png)
+
+</ImageContainer>
+
+Luckily, Zeplin has started supporting design components recently. With this feature, I could easily organize design components down to atom level (based on Atomic Design by Brad Frost).
+
+<ImageContainer size="large">
+
+![Design components on Zeplin](works-rbi-scheduler-system-02.png)
+
+</ImageContainer>
+
+<ImageContainer size="large" grid={6} noCaption blockCaption="Early stage wireframes">
+
+![Wireframe](works-rbi-scheduler-wf-01.png)
+![Wireframe](works-rbi-scheduler-wf-02.png)
+![Wireframe](works-rbi-scheduler-wf-03.png)
+![Wireframe](works-rbi-scheduler-wf-04.png)
+![Wireframe](works-rbi-scheduler-wf-05.png)
+![Wireframe](works-rbi-scheduler-wf-06.png)
+
+</ImageContainer>

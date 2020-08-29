@@ -1,0 +1,70 @@
+---
+type: 'work'
+title: 'Parallax Magritte'
+date: '2013-03-01'
+company: 'Personal project'
+responsibilities:
+  - 'Concept'
+  - 'Design'
+  - 'Development'
+description: 'Designed and developed this experimental website as a personal project while studying at Sydney University.'
+theme-color: '#131313'
+logo-adjustment: 1.2
+published: true
+---
+
+import { ImageContainer, VideoContainer, CustomCaption } from 'components/ContentBlocks'
+
+Parallax Magritte is a web experiment to make the art works of Rene Magritte to be like 3D space, so the viewers can see the unseen part of the original painting by tilting their tablet or smartphone.
+
+<ImageContainer noShadow noBorder noCaption>
+
+![Intro](works-magritte-01.png)
+
+</ImageContainer>
+
+
+<VideoContainer>
+
+`vimeo: 86180095`
+
+</VideoContainer>
+
+<ImageContainer>
+
+![Website structure](works-magritte-07.png)
+
+</ImageContainer>
+
+To build a 3D space from a plane painting, first I needed to separate each layer of the painting by using Photoshop. The tricky part of this step was filling the empty spots by copying-and-pasting from another similar part of the painting. Some layers of the painting needed to be expanded so they could have some extra space to show when the image is moving.
+
+<ImageContainer size="medium" noBorder>
+
+![Parallax layer structure](works-magritte-03.jpg)
+
+</ImageContainer>
+
+<ImageContainer size="medium">
+
+![Parallax artwork](works-magritte-04.png)
+
+</ImageContainer>
+
+Making the separated images into a 3D space using Parallax.js was mostly about sizing and positioning the each layer with CSS, so that each painting could demonstrate the best parallax effect within given boundaries.
+
+<VideoContainer maxSize={520}>
+
+`video: works-magritte.mp4`
+
+</VideoContainer>
+
+Built with Parallax.js by Matthew Wagerfield & Claudio Guglieri.
+
+<ImageContainer grid={4} noCaption>
+
+![Snapshot](works-magritte-pic-01.jpg)
+![Snapshot](works-magritte-pic-02.jpg)
+![Snapshot](works-magritte-pic-03.jpg)
+![Snapshot](works-magritte-pic-04.jpg)
+
+</ImageContainer>
