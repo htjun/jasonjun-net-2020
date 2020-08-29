@@ -14,21 +14,11 @@ const GlobalStyle = style.GlobalStyle
 const OuterWrapper = styled.div`
   height: 100%;
   margin: 0;
-  ${props =>
-    props.location === 'post' &&
-    css`
-      background: ${style.color.grey98};
-    `}
 `
 
 const InnerWrapper = styled.div`
   min-height: 100%;
   margin-bottom: calc(${style.objectSize.footerHeight} * -1);
-  ${props =>
-    props.location === 'book' &&
-    css`
-      background: ${style.color.navy12};
-    `}
 `
 
 const FooterPush = styled.div`

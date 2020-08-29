@@ -5,7 +5,7 @@ import { animated } from 'react-spring'
 import { introTransition } from 'components/animation'
 import Layout from 'components/Layout'
 import SEO from 'components/seo'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import * as style from 'styles/style'
 
 const ContentWrapper = styled.section`
@@ -15,12 +15,30 @@ const ContentWrapper = styled.section`
   overflow: hidden;
 `
 
+const BookCover = styled.div`
+  display: block;
+  margin-right: 48px;
+  width: 100%;
+  min-width: 200px;
+  max-width: 240px;
+
+  ${props =>
+    props.shadowColor &&
+    css`
+      .gatsby-image-wrapper {
+        filter: drop-shadow(0 8px 12px ${props.shadowColor.lightVibrant}12)
+          drop-shadow(0 8px 12px ${props.shadowColor.darkVibrant}16)
+          drop-shadow(0 8px 6px ${props.shadowColor.muted}12);
+      }
+    `} );
+`
+
 const BookHeader = styled(animated.div)`
   display: flex;
   align-items: flex-start;
   margin-top: 72px;
   padding-bottom: 64px;
-  border-bottom: 1px solid ${style.color.navy16};
+  border-bottom: 1px solid ${style.color.grey88};
   margin-bottom: 64px;
 
   @media ${style.deviceSize.phablet} {
@@ -30,10 +48,7 @@ const BookHeader = styled(animated.div)`
 
   .gatsby-image-wrapper {
     width: 100%;
-    min-width: 200px;
-    max-width: 240px;
     border-radius: 2px;
-    margin-right: 48px;
 
     @media ${style.deviceSize.phablet} {
       margin-right: 0;
@@ -58,10 +73,11 @@ const BookInfo = styled.div`
     margin-top 32px;
     display: grid;
     grid-row-gap: 24px;
+    color: ${style.color.grey24};
 
     small {
       font-size: ${style.fontSize.sm};
-      color: ${style.color.grey64};
+      color: ${style.color.grey48};
       margin-bottom: 4px;
     }
   }
@@ -81,7 +97,7 @@ const Highlights = styled(animated.div)`
 const Quote = styled.blockquote`
   font-family: ${style.fontSet.serif};
   font-size: ${style.fontSize.lg};
-  border-left: 4px solid ${style.color.navy24};
+  border-left: 4px solid ${style.color.navy92};
   padding-left: 2rem;
   margin: 4rem 0;
   max-width: 640px;
@@ -94,7 +110,8 @@ const Quote = styled.blockquote`
 
 const Book = props => {
   const book = props.data.airtable
-  const coverImage = book.data.Cover
+  const coverImage = book.data.Cover.localFiles[0].childImageSharp.fluid
+  const coverImageColors = book.data.Cover.localFiles[0].colors
   const quotes = book.data.Quotes
 
   return (
@@ -102,7 +119,9 @@ const Book = props => {
       <ContentWrapper>
         <BookHeader style={introTransition({ delay: 0 })}>
           {coverImage !== null && (
-            <Img fluid={coverImage.localFiles[0].childImageSharp.fluid} />
+            <BookCover shadowColor={coverImageColors}>
+              <Img fluid={coverImage} />
+            </BookCover>
           )}
           <BookInfo>
             <animated.h1 style={introTransition({ delay: 20 })}>
@@ -165,6 +184,17 @@ export const bookQuery = graphql`
               fluid(maxWidth: 512) {
                 ...GatsbyImageSharpFluid
               }
+              fixed(quality: 10, width: 100) {
+                src
+              }
+            }
+            colors {
+              vibrant
+              muted
+              lightVibrant
+              lightMuted
+              darkVibrant
+              darkMuted
             }
           }
         }

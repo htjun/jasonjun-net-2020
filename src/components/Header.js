@@ -52,7 +52,7 @@ const NavMenu = styled.ul`
   }
 
   li {
-    margin-right: 16px;
+    margin-right: 24px;
     position: relative;
     right: -8px;
 
