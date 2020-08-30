@@ -25,7 +25,22 @@ export const pageTitleIn = props =>
     },
     delay: props.delay,
     config: {
-      tension: 200,
-      mass: 2,
+      tension: 80,
+      mass: 1,
+    },
+  })
+
+export const fadeIn = props =>
+  useSpring({
+    from: {
+      opacity: 0,
+    },
+    to: {
+      opacity: 1,
+    },
+    delay: props.delay,
+    config: {
+      tension: 60,
+      mass: 1,
     },
   })

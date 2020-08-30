@@ -40,7 +40,6 @@ const PostListItem = props => {
 
   return (
     <PostListItemWrapper
-      key={node.fields.slug}
       lang={node.frontmatter.lang}
       style={introTransition({ delay: 24 * index })}
     >

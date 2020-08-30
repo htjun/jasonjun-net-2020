@@ -28,7 +28,7 @@ const PicksIndex = props => {
       <PageMeta pageTitle="Picks" desc={`${picksCount} recommendations`} />
       <PicksList>
         {picks.map(({ node }, index) => {
-          return <PicksListItem node={node} index={index} />
+          return <PicksListItem node={node} index={index} key={node.id} />
         })}
       </PicksList>
       <Pagination context={pageContext} path="picks" />

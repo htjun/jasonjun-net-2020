@@ -35,6 +35,7 @@ const Reading = props => {
               node={node}
               index={index}
               highlights={highlights}
+              key={node.id}
             />
           )
         })}

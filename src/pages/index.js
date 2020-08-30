@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import { animated } from 'react-spring'
-import { introTransition } from 'components/animation'
+import { introTransition, pageTitleIn, fadeIn } from 'components/animation'
+import Img from 'gatsby-image'
 import Layout from 'components/Layout'
 import SEO from 'components/seo'
 import PostListItem from 'components/PostListItem'
@@ -9,11 +10,76 @@ import ReadingListItem from 'components/ReadingListItem'
 import PicksListItem from 'components/PicksListItem'
 import styled, { css } from 'styled-components'
 import * as style from 'styles/style'
-import IconArrowUpRight from 'static/image/arrow-up-right.svg'
+import drawing from 'static/image/line-illustration.png'
 
-const HeroSection = styled(animated.section)`
+const HeroOuter = styled(animated.section)`
+  background-color: hsl(228, 12%, 99%);
+  border-bottom: 1px solid ${style.color.navy94};
+`
+
+const HeroInner = styled.div`
   ${style.MaxWidthStyle}
-  min-height: 256px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 24px;
+
+  @media ${style.deviceSize.mobile} {
+    flex-direction: column;
+  }
+
+  p {
+    font-family: ${style.fontSet.serif};
+    letter-spacing: ${style.textLetterSpacing.tight};
+    color: ${style.color.navy56};
+    max-width: 500px;
+    margin-right: 24px;
+    margin-bottom: 72px;
+
+    @media ${style.deviceSize.phablet} {
+      margin-bottom: 48px;
+    }
+
+    @media ${style.deviceSize.mobile} {
+      margin-bottom: 24px;
+    }
+
+    a {
+      border-bottom: 1px solid ${style.color.navy80};
+
+      &:hover {
+        ${style.TransitionStyle}
+        color: ${style.color.navy32};
+        border-color: ${style.color.navy64};
+      }
+    }
+  }  
+`
+
+const ImageBox = styled(animated.div)`
+  display: flex;
+  align-items: flex-end;
+  width: 250px;
+  min-width: 200px;
+  overflow: hidden;
+  margin-right: 72px;
+
+  @media ${style.deviceSize.tablet} {
+    margin-right: 16px;
+  }
+
+  @media ${style.deviceSize.phablet} {
+    min-width: 100px;
+  }
+
+  @media ${style.deviceSize.mobile} {
+    max-width: 140px;
+  }
+
+  img {
+    width: 100%;
+    opacity: 0.6;
+  }
 `
 
 const IndexHeader = styled(animated.div)`
@@ -40,6 +106,12 @@ const IndexHeader = styled(animated.div)`
 
 const SectionList = styled(animated.section)`
   ${style.MaxWidthStyle}
+
+  ${props =>
+    props.marginBottom &&
+    css`
+      margin-bottom: 72px;
+    `}
 `
 
 const Index = props => {
@@ -55,24 +127,38 @@ const Index = props => {
         title="Home"
         keywords={[`blog`, `gatsby`, `javascript`, 'design', `design system`]}
       />
-      <HeroSection />
-      <IndexHeader>
+      <HeroOuter>
+        <HeroInner>
+          <animated.p style={pageTitleIn({ delay: 0 })}>
+            I’m Jason – a software designer based in Melbourne, Australia.
+            Currently I’m working on designs systems at{' '}
+            <a href="https://xero.com" target="_blank">
+              Xero
+            </a>
+            .
+          </animated.p>
+          <ImageBox style={fadeIn({ delay: 600 })}>
+            <img src={drawing} alt="line drawing of a man listening to music" />
+          </ImageBox>
+        </HeroInner>
+      </HeroOuter>
+      <IndexHeader style={introTransition({ delay: 500 })}>
         <h2>
           <Link to="/blog/">Writing</Link>
         </h2>
       </IndexHeader>
-      <SectionList>
+      <SectionList style={introTransition({ delay: 600 })}>
         {posts.map(({ node }, index) => {
           const title = node.frontmatter.title || node.fields.slug
           return <PostListItem node={node} index={index} title={title} />
         })}
       </SectionList>
-      <IndexHeader>
+      <IndexHeader style={introTransition({ delay: 700 })}>
         <h2>
           <Link to="/reading/">Reading</Link>
         </h2>
       </IndexHeader>
-      <SectionList>
+      <SectionList style={introTransition({ delay: 800 })}>
         {books.map(({ node }, index) => {
           const highlights = node.data.Quotes ? node.data.Quotes.length : 'No'
 
@@ -85,12 +171,12 @@ const Index = props => {
           )
         })}
       </SectionList>
-      <IndexHeader>
+      <IndexHeader style={introTransition({ delay: 500 })}>
         <h2>
           <Link to="/picks/">Picks</Link>
         </h2>
       </IndexHeader>
-      <SectionList style={introTransition({ delay: 340 })}>
+      <SectionList style={introTransition({ delay: 600 })} marginBottom>
         {picks.map(({ node }, index) => {
           return <PicksListItem node={node} index={index} />
         })}

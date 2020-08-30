@@ -34,7 +34,14 @@ const BlogIndex = props => {
       <PostList>
         {posts.map(({ node }, index) => {
           const title = node.frontmatter.title || node.fields.slug
-          return <PostListItem node={node} index={index} title={title} />
+          return (
+            <PostListItem
+              node={node}
+              index={index}
+              title={title}
+              key={node.fields.slug}
+            />
+          )
         })}
       </PostList>
       <Pagination context={pageContext} path="blog" />

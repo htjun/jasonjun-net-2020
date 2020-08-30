@@ -61,10 +61,7 @@ const ReadingListItem = props => {
   const { node, index, highlights } = props
 
   return (
-    <ReadingListItemWrapper
-      key={node.id}
-      style={introTransition({ delay: 24 * index })}
-    >
+    <ReadingListItemWrapper style={introTransition({ delay: 24 * index })}>
       <h2>
         <Link to={`/reading/${node.data.Slug}`}>{node.data.Title}</Link>
         <span class="author">

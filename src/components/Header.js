@@ -97,56 +97,12 @@ const NavMenu = styled.ul`
 
 const HeaderWrapper = styled.header`
   color: ${style.color.grey8};
-`
-
-const HeaderContentWrapper = styled(animated.div)`
-  ${style.MaxWidthStyle};
-  padding-top: 48px;
 
   ${props =>
-    props.headerless &&
+    props.theme === 'bright' &&
     css`
-      padding-top: 12px;
-      padding-bottom: 24px;
+      background-color: hsl(228, 12%, 99%);
     `}
-
-  ${props =>
-    props.heroHeader &&
-    css`
-      padding: 0;
-    `}
-`
-
-const HeaderTitle = styled(animated.h2)`
-  ${style.HeroTitleStyle};
-`
-
-const HeaderDesc = styled.p`
-  max-width: 512px;
-  font-size: ${style.fontSize.base};
-  line-height: ${style.textLineHeight.normal};
-  color: ${style.color.grey64};
-`
-
-const HeaderBackLink = styled.div`
-  display: inline-block;
-
-  a {
-    ${style.LinkStyle}
-    font-size: ${style.fontSize.sm};
-    font-weight: ${style.fontWeight.semibold};
-    color: ${style.color.grey64};
-    line-height: 24px;
-    
-    display: flex;
-    align-items: center;
-
-    svg {
-      height: 8px;
-      margin-right: 8px;
-      fill: ${style.color.grey48};
-    }
-  }
 `
 
 const Header = props => {
@@ -165,47 +121,9 @@ const Header = props => {
   `)
   const siteMenu = data.site.siteMetadata.menuLinks
   const rootPath = `${__PATH_PREFIX__}/`
-  let headerContent
-  if (location === 'home') {
-    headerContent = null
-  } else if (location === 'post') {
-    headerContent = (
-      <HeaderContentWrapper headerless>
-        <HeaderBackLink>
-          <Link to="/blog/">
-            <IconChevronLeft />
-            <span>All Posts</span>
-          </Link>
-        </HeaderBackLink>
-      </HeaderContentWrapper>
-    )
-  } else if (location === 'book') {
-    headerContent = (
-      <HeaderContentWrapper headerless>
-        <HeaderBackLink>
-          <Link to="/reading/">
-            <IconChevronLeft />
-            <span>All Books</span>
-          </Link>
-        </HeaderBackLink>
-      </HeaderContentWrapper>
-    )
-  } else if (location === 'work') {
-    headerContent = <HeaderContentWrapper heroHeader />
-  } else if (location === '404') {
-    headerContent = null
-  } else {
-    headerContent = (
-      <HeaderContentWrapper>
-        <HeaderTitle style={pageTitleIn({ delay: 300 })}>
-          {pageTitle}
-        </HeaderTitle>
-      </HeaderContentWrapper>
-    )
-  }
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper theme={location === 'home' && 'bright'}>
       <NavWrapper>
         <SiteTitle>
           <Link to="/" activeClassName="active">

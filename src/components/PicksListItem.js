@@ -52,10 +52,7 @@ const PicksListItem = props => {
   const { node, index } = props
 
   return (
-    <PicksListItemWrapper
-      key={node.id}
-      style={introTransition({ delay: 24 * index })}
-    >
+    <PicksListItemWrapper style={introTransition({ delay: 24 * index })}>
       <h2>
         <a href={node.data.Link} target="_blank">
           {node.data.Title}
