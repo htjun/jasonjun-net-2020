@@ -25,7 +25,7 @@ export const pageTitleIn = props =>
     },
     delay: props.delay,
     config: {
-      tension: 80,
+      tension: 150,
       mass: 1,
     },
   })
@@ -40,7 +40,7 @@ export const fadeIn = props =>
     },
     delay: props.delay,
     config: {
-      tension: 60,
+      tension: 100,
       mass: 1,
     },
   })
