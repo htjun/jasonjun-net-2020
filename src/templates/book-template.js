@@ -110,8 +110,7 @@ const Quote = styled.blockquote`
 
 const Book = props => {
   const book = props.data.airtable
-  const coverImage = book.data.Cover.localFiles[0].childImageSharp.fluid
-  const coverImageColors = book.data.Cover.localFiles[0].colors
+  const coverImage = book.data.Cover
   const quotes = book.data.Quotes
 
   return (
@@ -119,8 +118,8 @@ const Book = props => {
       <ContentWrapper>
         <BookHeader style={introTransition({ delay: 0 })}>
           {coverImage !== null && (
-            <BookCover shadowColor={coverImageColors}>
-              <Img fluid={coverImage} />
+            <BookCover shadowColor={coverImage.localFiles[0].colors}>
+              <Img fluid={coverImage.localFiles[0].childImageSharp.fluid} />
             </BookCover>
           )}
           <BookInfo>
