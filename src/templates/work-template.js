@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { ReactSVG } from 'react-svg'
 import { animated } from 'react-spring'
 import { introTransition } from 'components/animation'
 import Layout from 'components/Layout'
@@ -18,6 +19,11 @@ const WorkHeaderOuter = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  ${props =>
+    props.themeColor &&
+    css`
+      background-color: ${props.themeColor};
+    `}
 
   @media ${style.deviceSize.phablet} {
     height: auto;
@@ -32,13 +38,16 @@ const WorkHeaderOuter = styled.div`
     margin-bottom: 24px;
 
     svg {
-      fill: ${style.color.navy32};
+      fill: rgba(255,255,255, 0.8);
     }
   }
 `
 const WorkHeaderInner = styled.div`
   ${style.MaxWidthStyle};
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   @media ${style.deviceSize.phablet} {
     margin-top: 48px;
@@ -46,7 +55,7 @@ const WorkHeaderInner = styled.div`
   }
 
   h1 {
-    color: ${style.color.grey98};
+    color: rgba(255, 255, 255, 0.9);
     font-size: ${style.fontSize.xl3};
     font-weight: ${style.fontWeight.semibold};
     margin-bottom: 72px;
@@ -54,6 +63,38 @@ const WorkHeaderInner = styled.div`
     @media ${style.deviceSize.phablet} {
       font-size: ${style.fontSize.xl2};
       margin-bottom: 32px;
+    }
+  }
+
+  .work-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+
+    @media ${style.deviceSize.tablet} {
+      display: none;
+    }
+
+    > div {
+      width: 80%;
+
+      ${props =>
+        props.logoAdjustment &&
+        css`
+          width: calc(80% * ${props.logoAdjustment});
+        `}
+
+      svg {
+        ${props =>
+          props.themeColor &&
+          css`
+            fill: ${props.themeColor};
+          `}
+        mix-blend-mode: multiply;
+        opacity: 0.3;
+      }
     }
   }
 `
@@ -67,12 +108,12 @@ const WorkHeaderDetailsList = styled.ul`
     font-size: ${style.fontSize.sm};
 
     .label {
-      color: ${style.color.grey48};
+      color: rgba(255, 255, 255, 0.6);
       min-width: 128px;
     }
 
     .value {
-      color: ${style.color.grey64};
+      color: rgba(255, 255, 255, 0.8);
     }
   }
 `
@@ -183,6 +224,8 @@ const WorkFooterDetailsList = styled(WorkHeaderDetailsList)`
 const WorkTemplate = props => {
   const work = props.data.mdx
   const tags = work.frontmatter.responsibilities
+  const logoPath = work.fields.slug.substring(0, work.fields.slug.length - 1)
+  const logoAdjustment = work.frontmatter.logo_adjustment
   const { previous, next } = props.pageContext
 
   return (
@@ -201,38 +244,54 @@ const WorkTemplate = props => {
           },
         ]}
       />
-      <WorkHeaderOuter>
+      <WorkHeaderOuter themeColor={work.frontmatter.theme_color}>
         <div />
-        <WorkHeaderInner>
-          <animated.h1 style={introTransition({ delay: 0 })}>
-            {work.frontmatter.title}
-          </animated.h1>
-          <WorkHeaderDetailsList>
-            <animated.li style={introTransition({ delay: 200 })}>
-              <div className="label">Year</div>
-              <div className="value">{work.frontmatter.date}</div>
-            </animated.li>
-            <animated.li style={introTransition({ delay: 240 })}>
-              <div className="label">Company</div>
-              <div className="value">{work.frontmatter.company}</div>
-            </animated.li>
-            <animated.li style={introTransition({ delay: 280 })}>
-              <div className="label">Responsibilities</div>
-              <div className="value">
-                {tags.map((item, index) => {
-                  return (
-                    <span key={index}>
-                      {item}
-                      {tags.length !== index + 1 ? <>, </> : null}
-                    </span>
-                  )
-                })}
-              </div>
-            </animated.li>
-          </WorkHeaderDetailsList>
+        <WorkHeaderInner
+          logoAdjustment={logoAdjustment}
+          themeColor={work.frontmatter.theme_color}
+        >
+          <div class="work-info">
+            <animated.h1 style={introTransition({ delay: 0 })}>
+              {work.frontmatter.title}
+            </animated.h1>
+            <WorkHeaderDetailsList>
+              <animated.li style={introTransition({ delay: 200 })}>
+                <div class="label">Year</div>
+                <div class="value">{work.frontmatter.date}</div>
+              </animated.li>
+              <animated.li style={introTransition({ delay: 240 })}>
+                <div class="label">Company</div>
+                <div class="value">{work.frontmatter.company}</div>
+              </animated.li>
+              <animated.li style={introTransition({ delay: 280 })}>
+                <div class="label">Responsibilities</div>
+                <div class="value">
+                  {tags.map((item, index) => {
+                    return (
+                      <span key={index}>
+                        {item}
+                        {tags.length !== index + 1 ? <>, </> : null}
+                      </span>
+                    )
+                  })}
+                </div>
+              </animated.li>
+            </WorkHeaderDetailsList>
+          </div>
+          <ReactSVG
+            src={`/image${logoPath}.svg`}
+            afterInjection={(error, svg) => {
+              if (error) {
+                console.error(error)
+                return
+              }
+            }}
+            class="work-cover"
+          />
         </WorkHeaderInner>
+
         <animated.div
-          className="icon-chevron-down"
+          class="icon-chevron-down"
           style={introTransition({ delay: 380 })}
         >
           <IconChevronDown />
@@ -247,20 +306,20 @@ const WorkTemplate = props => {
         <ContentFooter>
           <WorkFooterDetailsList>
             <li>
-              <div className="label">Project</div>
-              <div className="value">{work.frontmatter.title}</div>
+              <div class="label">Project</div>
+              <div class="value">{work.frontmatter.title}</div>
             </li>
             <li>
-              <div className="label">Year</div>
-              <div className="value">{work.frontmatter.date}</div>
+              <div class="label">Year</div>
+              <div class="value">{work.frontmatter.date}</div>
             </li>
             <li>
-              <div className="label">Company</div>
-              <div className="value">{work.frontmatter.company}</div>
+              <div class="label">Company</div>
+              <div class="value">{work.frontmatter.company}</div>
             </li>
             <li>
-              <div className="label">Responsibilities</div>
-              <div className="value">
+              <div class="label">Responsibilities</div>
+              <div class="value">
                 {tags.map((item, index) => {
                   return (
                     <span key={index}>
@@ -297,6 +356,11 @@ export const pageQuery = graphql`
         description
         company
         responsibilities
+        theme_color
+        logo_adjustment
+      }
+      fields {
+        slug
       }
       body
     }

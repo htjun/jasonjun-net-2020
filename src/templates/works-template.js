@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import { animated } from 'react-spring'
-import { ReactSVG } from 'react-svg'
 import { introTransition } from 'components/animation'
 import Layout from 'components/Layout'
 import PageMeta from 'components/Pagemeta'
