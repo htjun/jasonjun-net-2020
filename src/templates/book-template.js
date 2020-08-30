@@ -26,9 +26,9 @@ const BookCover = styled.div`
     props.shadowColor &&
     css`
       .gatsby-image-wrapper {
-        filter: drop-shadow(0 8px 12px ${props.shadowColor.lightVibrant}12)
-          drop-shadow(0 8px 12px ${props.shadowColor.darkVibrant}16)
-          drop-shadow(0 8px 6px ${props.shadowColor.muted}12);
+        box-shadow: 0 8px 12px ${props.shadowColor.lightVibrant}12,
+          0 8px 12px ${props.shadowColor.darkVibrant}16,
+          0 8px 6px ${props.shadowColor.muted}12;
       }
     `} );
 `
