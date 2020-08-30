@@ -40,7 +40,7 @@ export const fadeIn = props =>
     },
     delay: props.delay,
     config: {
-      tension: 100,
+      tension: props.tension ? props.tension : 100,
       mass: 1,
     },
   })

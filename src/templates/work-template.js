@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { ReactSVG } from 'react-svg'
 import { animated } from 'react-spring'
-import { introTransition } from 'components/animation'
+import { introTransition, fadeIn } from 'components/animation'
 import Layout from 'components/Layout'
 import SEO from 'components/seo'
 import ContentFooterNav from 'components/ContentFooterNav'
@@ -11,9 +11,9 @@ import IconChevronDown from 'static/image/chevron-down.svg'
 import styled, { css } from 'styled-components'
 import * as style from 'styles/style'
 
-const WorkHeaderOuter = styled.div`
+const WorkHeaderOuter = styled(animated.div)`
   height: 70vh;
-  min-height: 400px;
+  min-height: 300px;
   max-height: 512px;
   display: flex;
   flex-direction: column;
@@ -22,6 +22,7 @@ const WorkHeaderOuter = styled.div`
   ${props =>
     props.themeColor &&
     css`
+      border-bottom: 1px solid ${props.themeColor}40;
       background-color: ${props.themeColor};
     `}
 
@@ -38,16 +39,17 @@ const WorkHeaderOuter = styled.div`
     margin-bottom: 24px;
 
     svg {
-      fill: rgba(255,255,255, 0.8);
+      ${props =>
+        props.themeColor &&
+        css`
+          fill: #fff;
+        `}
     }
   }
 `
 const WorkHeaderInner = styled.div`
   ${style.MaxWidthStyle};
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: ${style.objectSize.contentMaxWidth};
 
   @media ${style.deviceSize.phablet} {
     margin-top: 48px;
@@ -55,9 +57,10 @@ const WorkHeaderInner = styled.div`
   }
 
   h1 {
-    color: rgba(255, 255, 255, 0.9);
+    color: #fff;
     font-size: ${style.fontSize.xl3};
     font-weight: ${style.fontWeight.semibold};
+    letter-spacing: ${style.textLetterSpacing.tight};
     margin-bottom: 72px;
 
     @media ${style.deviceSize.phablet} {
@@ -71,7 +74,7 @@ const WorkHeaderInner = styled.div`
     justify-content: center;
     align-items: center;
     width: 300px;
-    height: 300px;
+    height: 240px;
 
     @media ${style.deviceSize.tablet} {
       display: none;
@@ -83,7 +86,7 @@ const WorkHeaderInner = styled.div`
       ${props =>
         props.logoAdjustment &&
         css`
-          width: calc(80% * ${props.logoAdjustment});
+          width: calc(60% * ${props.logoAdjustment});
         `}
 
       svg {
@@ -92,8 +95,7 @@ const WorkHeaderInner = styled.div`
           css`
             fill: ${props.themeColor};
           `}
-        mix-blend-mode: multiply;
-        opacity: 0.3;
+        opacity: 1;
       }
     }
   }
@@ -106,14 +108,15 @@ const WorkHeaderDetailsList = styled.ul`
   li {
     display: flex;
     font-size: ${style.fontSize.sm};
+    color: #fff;
 
     .label {
-      color: rgba(255, 255, 255, 0.6);
       min-width: 128px;
+      opacity: 0.5;
     }
 
     .value {
-      color: rgba(255, 255, 255, 0.8);
+      opacity: 0.8;
     }
   }
 `
@@ -244,61 +247,52 @@ const WorkTemplate = props => {
           },
         ]}
       />
-      <WorkHeaderOuter themeColor={work.frontmatter.theme_color}>
+      <WorkHeaderOuter
+        themeColor={work.frontmatter.theme_color}
+        style={fadeIn({ delay: 0, tension: 200 })}
+      >
         <div />
         <WorkHeaderInner
           logoAdjustment={logoAdjustment}
           themeColor={work.frontmatter.theme_color}
         >
-          <div class="work-info">
-            <animated.h1 style={introTransition({ delay: 0 })}>
-              {work.frontmatter.title}
-            </animated.h1>
-            <WorkHeaderDetailsList>
-              <animated.li style={introTransition({ delay: 200 })}>
-                <div class="label">Year</div>
-                <div class="value">{work.frontmatter.date}</div>
-              </animated.li>
-              <animated.li style={introTransition({ delay: 240 })}>
-                <div class="label">Company</div>
-                <div class="value">{work.frontmatter.company}</div>
-              </animated.li>
-              <animated.li style={introTransition({ delay: 280 })}>
-                <div class="label">Responsibilities</div>
-                <div class="value">
-                  {tags.map((item, index) => {
-                    return (
-                      <span key={index}>
-                        {item}
-                        {tags.length !== index + 1 ? <>, </> : null}
-                      </span>
-                    )
-                  })}
-                </div>
-              </animated.li>
-            </WorkHeaderDetailsList>
-          </div>
-          <ReactSVG
-            src={`/image${logoPath}.svg`}
-            afterInjection={(error, svg) => {
-              if (error) {
-                console.error(error)
-                return
-              }
-            }}
-            class="work-cover"
-          />
+          <animated.h1 style={introTransition({ delay: 300 })}>
+            {work.frontmatter.title}
+          </animated.h1>
+          <WorkHeaderDetailsList>
+            <animated.li style={introTransition({ delay: 500 })}>
+              <div class="label">Year</div>
+              <div class="value">{work.frontmatter.date}</div>
+            </animated.li>
+            <animated.li style={introTransition({ delay: 540 })}>
+              <div class="label">Company</div>
+              <div class="value">{work.frontmatter.company}</div>
+            </animated.li>
+            <animated.li style={introTransition({ delay: 580 })}>
+              <div class="label">Responsibilities</div>
+              <div class="value">
+                {tags.map((item, index) => {
+                  return (
+                    <span key={index}>
+                      {item}
+                      {tags.length !== index + 1 ? <>, </> : null}
+                    </span>
+                  )
+                })}
+              </div>
+            </animated.li>
+          </WorkHeaderDetailsList>
         </WorkHeaderInner>
 
         <animated.div
           class="icon-chevron-down"
-          style={introTransition({ delay: 380 })}
+          style={introTransition({ delay: 640 })}
         >
           <IconChevronDown />
         </animated.div>
       </WorkHeaderOuter>
       <ContentOuter>
-        <ContentBlock style={introTransition({ delay: 480 })}>
+        <ContentBlock style={introTransition({ delay: 750 })}>
           <ContentBody>
             <MDXRenderer>{work.body}</MDXRenderer>
           </ContentBody>
