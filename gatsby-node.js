@@ -3,7 +3,6 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 
 const PostTemplate = path.resolve(`./src/templates/post-template.js`)
 const BlogTemplate = path.resolve(`./src/templates/blog-template.js`)
-const NoteTemplate = path.resolve(`./src/templates/note-template.js`)
 const ReadingTemplate = path.resolve(`./src/templates/reading-template.js`)
 const BookTemplate = path.resolve(`./src/templates/book-template.js`)
 const PicksTemplate = path.resolve(`./src/templates/picks-template.js`)
@@ -36,15 +35,6 @@ exports.createPages = ({ graphql, actions }) => {
               body
             }
           }
-        }
-
-        note: allAirtable(
-          filter: {
-            table: { eq: "Quotes" }
-            data: { Published: { eq: true }, Marked: { eq: true } }
-          }
-        ) {
-          totalCount
         }
 
         reading: allAirtable(
@@ -133,29 +123,6 @@ exports.createPages = ({ graphql, actions }) => {
           slug: post.node.fields.slug,
           previous,
           next,
-        },
-      })
-    })
-
-    /* Create note pages */
-    const notesPerPage = 50
-    const totalNotePages = Math.ceil(result.data.note.totalCount / notesPerPage)
-
-    Array.from({ length: totalNotePages }).forEach((_, index) => {
-      const currentNotePage = index + 1
-      const isFirstNotePage = index === 0
-      const isLastNotePage = currentNotePage === totalNotePages
-
-      createPage({
-        path: isFirstNotePage ? `/notes/` : `/notes/${currentNotePage}`,
-        component: NoteTemplate,
-        context: {
-          limit: notesPerPage,
-          skip: index * notesPerPage,
-          currentPage: currentNotePage,
-          isFirstPage: isFirstNotePage,
-          isLastPage: isLastNotePage,
-          totalPages: totalNotePages,
         },
       })
     })

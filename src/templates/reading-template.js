@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Layout from 'components/Layout'
-import PageMeta from 'components/Pagemeta'
+import PageMeta from 'components/PageMeta'
 import ReadingListItem from 'components/ReadingListItem'
 import SEO from 'components/seo'
 import Pagination from 'components/Pagination'
