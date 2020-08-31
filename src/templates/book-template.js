@@ -15,24 +15,6 @@ const ContentWrapper = styled.section`
   overflow: hidden;
 `
 
-const BookCover = styled.div`
-  display: block;
-  margin-right: 48px;
-  width: 100%;
-  min-width: 200px;
-  max-width: 240px;
-
-  ${props =>
-    props.shadowColor &&
-    css`
-      .gatsby-image-wrapper {
-        box-shadow: 0 8px 12px ${props.shadowColor.lightVibrant}12,
-          0 8px 12px ${props.shadowColor.darkVibrant}16,
-          0 8px 6px ${props.shadowColor.muted}12;
-      }
-    `} );
-`
-
 const BookHeader = styled(animated.div)`
   display: flex;
   align-items: flex-start;
@@ -44,11 +26,35 @@ const BookHeader = styled(animated.div)`
   @media ${style.deviceSize.phablet} {
     flex-direction: column;
     align-items: center;
+    margin-top: 4vw;
   }
+`
+
+const BookCover = styled.div`
+  display: block;
+  margin-right: 48px;
+  width: 100%;
+  min-width: 200px;
+  max-width: 240px;
+
+  @media ${style.deviceSize.phablet} {
+    margin-right: 0;
+  }
+
+  ${props =>
+    props.shadowColor &&
+    css`
+      .gatsby-image-wrapper {
+        box-shadow: 0 8px 12px ${props.shadowColor.lightVibrant}12,
+          0 8px 12px ${props.shadowColor.darkVibrant}16,
+          0 8px 6px ${props.shadowColor.muted}12,
+          0 24px 24px ${props.shadowColor.muted}24;
+      }
+    `}
 
   .gatsby-image-wrapper {
     width: 100%;
-    border-radius: 2px;
+    border-radius: 3px;
 
     @media ${style.deviceSize.phablet} {
       margin-right: 0;
@@ -72,7 +78,7 @@ const BookInfo = styled.div`
   ul {
     margin-top 32px;
     display: grid;
-    grid-row-gap: 24px;
+    grid-row-gap: 16px;
     color: ${style.color.grey24};
 
     small {
@@ -148,10 +154,14 @@ const Book = props => {
                 <small>Category</small>
                 <div>{book.data.Genre}</div>
               </animated.li>
+              <animated.li style={introTransition({ delay: 200 })}>
+                <small>Status</small>
+                <div>{book.data.Status}</div>
+              </animated.li>
             </ul>
           </BookInfo>
         </BookHeader>
-        <Highlights style={introTransition({ delay: 200 })}>
+        <Highlights style={introTransition({ delay: 250 })}>
           <h3>{`${quotes ? quotes.length : 0} Highlights`}</h3>
           {quotes &&
             quotes.map((quote, index) => {
@@ -199,6 +209,7 @@ export const bookQuery = graphql`
         }
         Published_year
         Genre
+        Status
         Quotes {
           data {
             Content
