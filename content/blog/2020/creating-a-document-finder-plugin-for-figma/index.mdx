@@ -128,8 +128,8 @@ if (selected.type === 'INSTANCE') {
     type: 'selection-instance',
     message: {
       compKey: selected.masterComponent.key,
-      name: selected.masterComponent.name,
       compType: selected.type,
+      compName: selected.masterComponent.name
     },
   })
 } else if (selected.type === 'COMPONENT') {
@@ -138,8 +138,8 @@ if (selected.type === 'INSTANCE') {
     type: 'selection-component',
     message: {
       compKey: selected.key,
-      name: selected.name,
       compType: selected.type,
+      compName: selected.name
     },
   })
 } else {
@@ -147,8 +147,8 @@ if (selected.type === 'INSTANCE') {
   figma.ui.postMessage({
     type: 'selection-else',
     message: {
-      name: selected.name,
       compType: selected.type,
+      compName: selected.name
     },
   })
 }
@@ -179,7 +179,7 @@ React.useEffect(() => {
       setSelectionInfo({
         compKey: message.compKey,
         compType: message.compType,
-        compName: message.name,
+        compName: message.compName,
       })
     } else {
       // Selection is not an instance nor a component
@@ -187,7 +187,7 @@ React.useEffect(() => {
       setSelectionInfo({
         compKey: '',
         compType: message.compType,
-        compName: message.name,
+        compName: message.compName,
       })
     }
   }
