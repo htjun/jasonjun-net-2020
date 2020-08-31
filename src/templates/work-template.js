@@ -11,14 +11,20 @@ import IconChevronDown from 'static/image/chevron-down.svg'
 import styled, { css } from 'styled-components'
 import * as style from 'styles/style'
 
+const WorkInnerWrapper = styled.div`
+  overflow: hidden;
+`
+
 const WorkHeaderOuter = styled(animated.div)`
-  height: 70vh;
-  min-height: 300px;
-  max-height: 512px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  height: 70vh;
+  min-height: 300px;
+  max-height: 512px;
+  padding: 0 24px;
+
   ${props =>
     props.themeColor &&
     css`
@@ -30,6 +36,10 @@ const WorkHeaderOuter = styled(animated.div)`
     height: auto;
     min-height: auto;
     max-height: auto;
+  }
+
+  @media ${style.deviceSize.mobile} {
+    padding: 0 16px;
   }
 
   .icon-chevron-down {
@@ -48,8 +58,9 @@ const WorkHeaderOuter = styled(animated.div)`
   }
 `
 const WorkHeaderInner = styled.div`
-  ${style.MaxWidthStyle};
-  width: ${style.objectSize.contentMaxWidth};
+  width: 100%;
+  max-width: ${style.objectSize.contentMaxWidth};
+  margin: 0 auto;
 
   @media ${style.deviceSize.phablet} {
     margin-top: 48px;
@@ -140,7 +151,7 @@ const ContentBlock = styled(animated.article)`
 
 const ContentTextStyle = css`
   width: 100%;
-  max-width: 640px;
+  max-width: ${style.objectSize.contentMaxWidth};
   margin: 2.5rem auto;
 `
 
@@ -247,87 +258,89 @@ const WorkTemplate = props => {
           },
         ]}
       />
-      <WorkHeaderOuter
-        themeColor={work.frontmatter.theme_color}
-        style={fadeIn({ delay: 0, tension: 200 })}
-      >
-        <div />
-        <WorkHeaderInner
-          logoAdjustment={logoAdjustment}
+      <WorkInnerWrapper>
+        <WorkHeaderOuter
           themeColor={work.frontmatter.theme_color}
+          style={fadeIn({ delay: 0, tension: 200 })}
         >
-          <animated.h1 style={introTransition({ delay: 300 })}>
-            {work.frontmatter.title}
-          </animated.h1>
-          <WorkHeaderDetailsList>
-            <animated.li style={introTransition({ delay: 500 })}>
-              <div class="label">Year</div>
-              <div class="value">{work.frontmatter.date}</div>
-            </animated.li>
-            <animated.li style={introTransition({ delay: 540 })}>
-              <div class="label">Company</div>
-              <div class="value">{work.frontmatter.company}</div>
-            </animated.li>
-            <animated.li style={introTransition({ delay: 580 })}>
-              <div class="label">Responsibilities</div>
-              <div class="value">
-                {tags.map((item, index) => {
-                  return (
-                    <span key={index}>
-                      {item}
-                      {tags.length !== index + 1 ? <>, </> : null}
-                    </span>
-                  )
-                })}
-              </div>
-            </animated.li>
-          </WorkHeaderDetailsList>
-        </WorkHeaderInner>
+          <div />
+          <WorkHeaderInner
+            logoAdjustment={logoAdjustment}
+            themeColor={work.frontmatter.theme_color}
+          >
+            <animated.h1 style={introTransition({ delay: 300 })}>
+              {work.frontmatter.title}
+            </animated.h1>
+            <WorkHeaderDetailsList>
+              <animated.li style={introTransition({ delay: 500 })}>
+                <div class="label">Year</div>
+                <div class="value">{work.frontmatter.date}</div>
+              </animated.li>
+              <animated.li style={introTransition({ delay: 540 })}>
+                <div class="label">Company</div>
+                <div class="value">{work.frontmatter.company}</div>
+              </animated.li>
+              <animated.li style={introTransition({ delay: 580 })}>
+                <div class="label">Responsibilities</div>
+                <div class="value">
+                  {tags.map((item, index) => {
+                    return (
+                      <span key={index}>
+                        {item}
+                        {tags.length !== index + 1 ? <>, </> : null}
+                      </span>
+                    )
+                  })}
+                </div>
+              </animated.li>
+            </WorkHeaderDetailsList>
+          </WorkHeaderInner>
 
-        <animated.div
-          class="icon-chevron-down"
-          style={introTransition({ delay: 640 })}
-        >
-          <IconChevronDown />
-        </animated.div>
-      </WorkHeaderOuter>
-      <ContentOuter>
-        <ContentBlock style={introTransition({ delay: 750 })}>
-          <ContentBody>
-            <MDXRenderer>{work.body}</MDXRenderer>
-          </ContentBody>
-        </ContentBlock>
-        <ContentFooter>
-          <WorkFooterDetailsList>
-            <li>
-              <div class="label">Project</div>
-              <div class="value">{work.frontmatter.title}</div>
-            </li>
-            <li>
-              <div class="label">Year</div>
-              <div class="value">{work.frontmatter.date}</div>
-            </li>
-            <li>
-              <div class="label">Company</div>
-              <div class="value">{work.frontmatter.company}</div>
-            </li>
-            <li>
-              <div class="label">Responsibilities</div>
-              <div class="value">
-                {tags.map((item, index) => {
-                  return (
-                    <span key={index}>
-                      {item}
-                      {tags.length !== index + 1 ? <>, </> : null}
-                    </span>
-                  )
-                })}
-              </div>
-            </li>
-          </WorkFooterDetailsList>
-        </ContentFooter>
-        <ContentFooterNav previous={previous} next={next} location="work" />
-      </ContentOuter>
+          <animated.div
+            class="icon-chevron-down"
+            style={introTransition({ delay: 640 })}
+          >
+            <IconChevronDown />
+          </animated.div>
+        </WorkHeaderOuter>
+        <ContentOuter>
+          <ContentBlock style={introTransition({ delay: 750 })}>
+            <ContentBody>
+              <MDXRenderer>{work.body}</MDXRenderer>
+            </ContentBody>
+          </ContentBlock>
+          <ContentFooter>
+            <WorkFooterDetailsList>
+              <li>
+                <div class="label">Project</div>
+                <div class="value">{work.frontmatter.title}</div>
+              </li>
+              <li>
+                <div class="label">Year</div>
+                <div class="value">{work.frontmatter.date}</div>
+              </li>
+              <li>
+                <div class="label">Company</div>
+                <div class="value">{work.frontmatter.company}</div>
+              </li>
+              <li>
+                <div class="label">Responsibilities</div>
+                <div class="value">
+                  {tags.map((item, index) => {
+                    return (
+                      <span key={index}>
+                        {item}
+                        {tags.length !== index + 1 ? <>, </> : null}
+                      </span>
+                    )
+                  })}
+                </div>
+              </li>
+            </WorkFooterDetailsList>
+          </ContentFooter>
+          <ContentFooterNav previous={previous} next={next} location="work" />
+        </ContentOuter>
+      </WorkInnerWrapper>
     </Layout>
   )
 }
