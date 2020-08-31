@@ -18,6 +18,7 @@ export const color = {
   grey96: 'hsl(240, 4%, 96%)',
   grey98: 'hsl(240, 4%, 98%)',
   navy4: 'hsl(228, 12%, 4%)',
+  navy8: 'hsl(228, 12%, 8%)',
   navy12: 'hsl(228, 12%, 12%)',
   navy16: 'hsl(228, 12%, 16%)',
   navy18: 'hsl(228, 12%, 18%)',

@@ -76,16 +76,16 @@ const NavMenu = styled.ul`
       font-size: ${style.fontSize.base};
       font-weight: ${style.fontWeight.medium};
       letter-spacing: ${style.textLetterSpacing.tight};
-      color: ${style.color.grey64};
+      color: ${style.color.navy56};
 
       &:hover {
         @media (hover: hover) {
-          color: ${style.color.grey32};
+          color: ${style.color.navy24};
         }
       }
 
       &.active {
-        color: ${style.color.grey8};
+        color: ${style.color.navy8};
 
         &:hover {
           background: none;
