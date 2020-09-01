@@ -128,7 +128,7 @@ exports.createPages = ({ graphql, actions }) => {
     })
 
     /* Create reading pages */
-    const readingsPerPage = 100
+    const readingsPerPage = 30
     const totalReadingPages = Math.ceil(
       result.data.reading.totalCount / readingsPerPage
     )
