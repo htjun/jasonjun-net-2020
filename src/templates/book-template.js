@@ -41,20 +41,10 @@ const BookCover = styled.div`
     margin-right: 0;
   }
 
-  ${props =>
-    props.shadowColor &&
-    css`
-      .gatsby-image-wrapper {
-        box-shadow: 0 8px 12px ${props.shadowColor.lightVibrant}12,
-          0 8px 12px ${props.shadowColor.darkVibrant}16,
-          0 8px 6px ${props.shadowColor.muted}12,
-          0 24px 24px ${props.shadowColor.muted}24;
-      }
-    `}
-
   .gatsby-image-wrapper {
     width: 100%;
     border-radius: 3px;
+    box-shadow: 8px 16px 16px #55647324, 12px 24px 24px #55647316;
 
     @media ${style.deviceSize.phablet} {
       margin-right: 0;
@@ -124,7 +114,7 @@ const Book = props => {
       <ContentWrapper>
         <BookHeader style={introTransition({ delay: 0 })}>
           {coverImage !== null && (
-            <BookCover shadowColor={coverImage.localFiles[0].colors}>
+            <BookCover>
               <Img fluid={coverImage.localFiles[0].childImageSharp.fluid} />
             </BookCover>
           )}
@@ -196,14 +186,6 @@ export const bookQuery = graphql`
               fixed(quality: 10, width: 100) {
                 src
               }
-            }
-            colors {
-              vibrant
-              muted
-              lightVibrant
-              lightMuted
-              darkVibrant
-              darkMuted
             }
           }
         }
