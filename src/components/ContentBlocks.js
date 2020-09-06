@@ -71,10 +71,15 @@ const CaptionWrapper = styled.figcaption`
     css`
       margin-top: -1rem;
     `}
+  ${props =>
+    props.type === 'code' &&
+    css`
+      margin-top: -1.5rem;
+    `}
 `
 
 export const CustomCaption = props => {
-  const captionType = props.video ? 'video' : null
+  const captionType = props.video ? 'video' : props.code ? 'code' : null
 
   return <CaptionWrapper type={captionType}>{props.children}</CaptionWrapper>
 }
@@ -117,15 +122,15 @@ const ImageWrapper = styled.div`
   ${props =>
     props.margin === 'medium' &&
     css`
-    margin-top: 96px;
-    margin-bottom: 96px;
+      margin-top: 96px;
+      margin-bottom: 96px;
     `}
 
   ${props =>
     props.margin === 'small' &&
     css`
-    margin-top: 64px;
-    margin-bottom: 64px;
+      margin-top: 64px;
+      margin-bottom: 64px;
     `}
 
   ${props =>
@@ -268,24 +273,24 @@ const VideoWrapper = styled.div`
   ${props =>
     props.margin === 'medium' &&
     css`
-    margin-top: 96px;
-    margin-bottom: 96px;
+      margin-top: 96px;
+      margin-bottom: 96px;
     `}
 
   ${props =>
     props.margin === 'small' &&
     css`
-    margin-top: 64px;
-    margin-bottom: 64px;
+      margin-top: 64px;
+      margin-bottom: 64px;
     `}
 
-  ${props => props.border &&
+  ${props =>
+    props.border &&
     css`
-    video {
-      border: 1px solid ${style.color.navy92};
-    }
-    `
-  }
+      video {
+        border: 1px solid ${style.color.navy92};
+      }
+    `}
 
   video {
     width: 100%;
@@ -312,7 +317,13 @@ export const VideoContainer = props => {
   const { size, maxSize, ratio, margin, border, caption } = props
 
   return (
-    <VideoWrapper size={size} maxSize={maxSize} ratio={ratio} margin={margin} border={border}>
+    <VideoWrapper
+      size={size}
+      maxSize={maxSize}
+      ratio={ratio}
+      margin={margin}
+      border={border}
+    >
       {props.children}
       {caption && <BlockCaption>{caption}</BlockCaption>}
     </VideoWrapper>
