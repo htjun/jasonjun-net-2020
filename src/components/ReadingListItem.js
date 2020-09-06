@@ -11,6 +11,7 @@ const ReadingListItemWrapper = styled(animated.div)`
   .author {
     font-size: ${style.fontSize.sm};
     font-weight: ${style.fontWeight.regular};
+    color: ${style.color.navy48};
 
     .dash {
       margin-right: 8px;
@@ -19,9 +20,6 @@ const ReadingListItemWrapper = styled(animated.div)`
       @media ${style.deviceSize.phablet} {
         display: none;
       }
-    }
-    .name {
-      color: ${style.color.navy48};
     }
 
     @media ${style.deviceSize.phablet} {

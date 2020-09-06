@@ -102,6 +102,20 @@ const Quote = styled.blockquote`
     padding-left: 1rem;
     margin: 3rem 0;
   }
+
+  .names {
+    display: block;
+    margin-top: 12px;
+    font-family: ${style.fontSet.sans};
+    font-size: ${style.fontSize.base};
+    color: ${style.color.navy48};
+
+    &:before {
+      content: '–';
+      margin-right: 8px;
+      color: ${style.color.navy72};
+    }
+  }
 `
 
 const Book = props => {
@@ -155,7 +169,20 @@ const Book = props => {
           <h3>{`${quotes ? quotes.length : 0} Highlights`}</h3>
           {quotes &&
             quotes.map((quote, index) => {
-              return <Quote key={index}>{quote.data.Content}</Quote>
+              return (
+                <Quote key={index}>
+                  <div class="quote">{quote.data.Content}</div>
+                  {quote.data.Person &&
+                    quote.data.Person.map((person, i) => {
+                      return (
+                        <div class="names" key={i}>
+                          <span class="name">{person.data.Name}</span>
+                          {i < quote.data.Person.length - 1 ? ', ' : null}
+                        </div>
+                      )
+                    })}
+                </Quote>
+              )
             })}
         </Highlights>
       </ContentWrapper>
@@ -195,6 +222,11 @@ export const bookQuery = graphql`
         Quotes {
           data {
             Content
+            Person {
+              data {
+                Name
+              }
+            }
           }
         }
       }
