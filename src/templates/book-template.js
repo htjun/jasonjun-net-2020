@@ -50,6 +50,11 @@ const BookCover = styled.div`
       margin-right: 0;
       margin-bottom: 48px;
     }
+
+    img {
+      width: calc(100% + 2px) !important;
+      margin-left: -1px !important;
+    }
   }
 `
 
