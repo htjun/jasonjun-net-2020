@@ -11,7 +11,7 @@ const PageMetaWrapper = styled.div`
 
   @media ${style.deviceSize.phablet} {
     margin-top: 6vw;
-    margin-bottom: 6vw;
+    margin-bottom: 8vw;
   }
 
   strong {

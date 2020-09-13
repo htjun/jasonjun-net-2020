@@ -86,6 +86,7 @@ export const objectSize = {
 }
 
 export const deviceSize = {
+  tiny: `(max-width: 340px)`,
   mobile: `(max-width: 480px)`,
   phablet: `(max-width: 640px)`,
   tablet: `(max-width: 768px)`,
