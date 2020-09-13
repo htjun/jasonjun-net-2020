@@ -6,8 +6,8 @@ const BlogTemplate = path.resolve(`./src/templates/blog-template.js`)
 const ReadingTemplate = path.resolve(`./src/templates/reading-template.js`)
 const BookTemplate = path.resolve(`./src/templates/book-template.js`)
 const PicksTemplate = path.resolve(`./src/templates/picks-template.js`)
-const WorksTemplate = path.resolve(`./src/templates/works-template.js`)
-const WorkTemplate = path.resolve(`./src/templates/work-template.js`)
+// const WorksTemplate = path.resolve(`./src/templates/works-template.js`)
+// const WorkTemplate = path.resolve(`./src/templates/work-template.js`)
 
 /* Blog posts */
 exports.createPages = ({ graphql, actions }) => {
@@ -199,47 +199,47 @@ exports.createPages = ({ graphql, actions }) => {
     })
 
     /* Create works pages */
-    const works = result.data.works.edges
-    const worksPerPage = 24
-    const totalWorksPages = Math.ceil(
-      result.data.works.totalCount / worksPerPage
-    )
+    // const works = result.data.works.edges
+    // const worksPerPage = 24
+    // const totalWorksPages = Math.ceil(
+    //   result.data.works.totalCount / worksPerPage
+    // )
 
-    Array.from({ length: totalWorksPages }).forEach((_, index) => {
-      const currentWorksPage = index + 1
-      const isFirstWorksPage = index === 0
-      const isLastWorksPage = currentWorksPage === totalWorksPages
+    // Array.from({ length: totalWorksPages }).forEach((_, index) => {
+    //   const currentWorksPage = index + 1
+    //   const isFirstWorksPage = index === 0
+    //   const isLastWorksPage = currentWorksPage === totalWorksPages
 
-      createPage({
-        path: isFirstWorksPage ? `/works/` : `/works/${currentWorksPage}`,
-        component: WorksTemplate,
-        context: {
-          limit: worksPerPage,
-          skip: index * worksPerPage,
-          currentPage: currentWorksPage,
-          isFirstPage: isFirstWorksPage,
-          isLastPage: isLastWorksPage,
-          totalPages: totalWorksPages,
-        },
-      })
-    })
+    //   createPage({
+    //     path: isFirstWorksPage ? `/works/` : `/works/${currentWorksPage}`,
+    //     component: WorksTemplate,
+    //     context: {
+    //       limit: worksPerPage,
+    //       skip: index * worksPerPage,
+    //       currentPage: currentWorksPage,
+    //       isFirstPage: isFirstWorksPage,
+    //       isLastPage: isLastWorksPage,
+    //       totalPages: totalWorksPages,
+    //     },
+    //   })
+    // })
 
     /* Create individual work pages */
-    works.forEach((work, index) => {
-      const previousWork =
-        index === works.length - 1 ? null : works[index + 1].node
-      const nextWork = index === 0 ? null : works[index - 1].node
+    // works.forEach((work, index) => {
+    //   const previousWork =
+    //     index === works.length - 1 ? null : works[index + 1].node
+    //   const nextWork = index === 0 ? null : works[index - 1].node
 
-      createPage({
-        path: work.node.fields.slug,
-        component: WorkTemplate,
-        context: {
-          slug: work.node.fields.slug,
-          previous: previousWork,
-          next: nextWork,
-        },
-      })
-    })
+    //   createPage({
+    //     path: work.node.fields.slug,
+    //     component: WorkTemplate,
+    //     context: {
+    //       slug: work.node.fields.slug,
+    //       previous: previousWork,
+    //       next: nextWork,
+    //     },
+    //   })
+    // })
   })
 }
 
