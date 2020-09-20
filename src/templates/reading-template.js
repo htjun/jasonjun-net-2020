@@ -22,10 +22,7 @@ const Reading = props => {
   return (
     <Layout location={props.location} pageTitle="Reading">
       <SEO title="Reading" />
-      <PageMeta
-        pageTitle="Reading"
-        desc={`${bookCount} books and ${highlightCount} highlights`}
-      />
+      <PageMeta pageTitle="Reading" desc={`${bookCount} books`} />
       <ReadingList>
         {books.map(({ node }, index) => {
           const highlights = node.data.Quotes ? node.data.Quotes.length : 'No'
