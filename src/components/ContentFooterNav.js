@@ -56,6 +56,12 @@ const ContentFooterNavWrapper = styled.div`
     }
 
     &.next {
+      margin-left: auto;
+
+      @media ${style.deviceSize.phablet} {
+        margin-left: 0;
+      }
+      
       small {
         text-align: right;
 
