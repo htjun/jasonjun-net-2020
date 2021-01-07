@@ -220,10 +220,12 @@ const WorkFooterDetailsList = styled(WorkHeaderDetailsList)`
 
     .label {
       color: ${style.color.grey64};
+      opacity: 1;
     }
 
     .value {
       color: ${style.color.grey24};
+      opacity: 1;
     }
   }
 `
