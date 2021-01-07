@@ -93,13 +93,6 @@ const WorkHeaderInner = styled.div`
 
     > div {
       width: 80%;
-
-      ${props =>
-        props.logoAdjustment &&
-        css`
-          width: calc(60% * ${props.logoAdjustment});
-        `}
-
       svg {
         ${props =>
           props.themeColor &&
@@ -239,7 +232,6 @@ const WorkTemplate = props => {
   const work = props.data.mdx
   const tags = work.frontmatter.responsibilities
   const logoPath = work.fields.slug.substring(0, work.fields.slug.length - 1)
-  const logoAdjustment = work.frontmatter.logo_adjustment
   const { previous, next } = props.pageContext
 
   return (
@@ -265,7 +257,6 @@ const WorkTemplate = props => {
         >
           <div />
           <WorkHeaderInner
-            logoAdjustment={logoAdjustment}
             themeColor={work.frontmatter.theme_color}
           >
             <animated.h1 style={introTransition({ delay: 300 })}>
@@ -364,7 +355,6 @@ export const pageQuery = graphql`
         company
         responsibilities
         theme_color
-        logo_adjustment
       }
       fields {
         slug

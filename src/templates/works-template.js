@@ -117,7 +117,6 @@ export const query = graphql`
             description
             responsibilities
             theme_color
-            logo_adjustment
           }
           fields {
             slug
