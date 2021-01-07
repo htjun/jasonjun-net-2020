@@ -13,7 +13,7 @@ const NavWrapper = styled.div`
   padding-top: 32px;
   padding-bottom: 32px;
 
-  @media ${style.deviceSize.tiny} {
+  @media ${style.deviceSize.mobile} {
     padding-top: 16px;
     padding-bottom: 16px;
     flex-direction: column;
@@ -44,7 +44,7 @@ const NavMenu = styled.ul`
   display: flex;
   margin-top: 8px;
 
-  @media ${style.deviceSize.tiny} {
+  @media ${style.deviceSize.mobile} {
     margin-top: 16px;
     justify-content: space-between;
     border-top: 1px solid ${style.color.navy92};
@@ -66,9 +66,6 @@ const NavMenu = styled.ul`
 
     @media ${style.deviceSize.mobile} {
       margin-right: 8px;
-    }
-
-    @media ${style.deviceSize.tiny} {
       margin-right: 0;
       margin-left: 0;
       right: 0;
