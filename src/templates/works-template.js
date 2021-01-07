@@ -37,6 +37,24 @@ const WorksListItem = styled(animated.div)`
       display: none;
     }
   }
+
+  ${props =>
+    props.favourite === true &&
+    css`
+      &:before {
+        display: block;
+        content: "★";
+        color: ${style.color.blue72};
+        position: absolute;
+        left: -24px;
+
+        @media ${style.deviceSize.tablet} {
+          font-size: ${style.fontSize.sm};
+          line-height: ${style.textLineHeight.loose};
+          left: -16px;
+        }
+      }
+    `}
 `
 
 const WorksIndex = props => {
@@ -71,6 +89,7 @@ const WorksIndex = props => {
             <WorksListItem
               key={node.fields.slug}
               style={introTransition({ delay: 20 * index })}
+              favourite={node.frontmatter.favourite}
             >
               <h2>
                 <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
@@ -117,6 +136,7 @@ export const query = graphql`
             description
             responsibilities
             theme_color
+            favourite
           }
           fields {
             slug
