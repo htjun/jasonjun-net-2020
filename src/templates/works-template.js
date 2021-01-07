@@ -48,10 +48,8 @@ const WorksListItem = styled(animated.div)`
         position: absolute;
         left: -24px;
 
-        @media ${style.deviceSize.tablet} {
-          font-size: ${style.fontSize.sm};
-          line-height: ${style.textLineHeight.loose};
-          left: -16px;
+        @media ${style.deviceSize.landscape} {
+          display: none;
         }
       }
     `}
