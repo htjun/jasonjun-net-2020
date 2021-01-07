@@ -90,6 +90,7 @@ export const deviceSize = {
   mobile: `(max-width: 480px)`,
   phablet: `(max-width: 640px)`,
   tablet: `(max-width: 768px)`,
+  landscape: `(max-width: 1024px)`,
 }
 
 // Predefiend style
