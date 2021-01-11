@@ -259,6 +259,7 @@ export const ContentBodyStyle = css`
 
   p {
     margin-bottom: 1.5rem;
+    word-break: keep-all;
   }
 
   ul {
