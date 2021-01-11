@@ -329,3 +329,20 @@ export const VideoContainer = props => {
     </VideoWrapper>
   )
 }
+
+
+/*----- Excerpt block -----*/
+const ExcerptBlock = styled.div`
+  border-left: 2px solid ${style.color.navy92};
+  padding-left: 2rem;
+  margin: 3rem 0;
+  color: ${style.color.grey32};
+`
+
+export const Excerpt = props => {
+  return (
+    <ExcerptBlock>
+      {props.children}
+    </ExcerptBlock>
+  )
+}
