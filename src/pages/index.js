@@ -53,7 +53,7 @@ const HeroInner = styled.div`
         border-color: ${style.color.navy64};
       }
     }
-  }  
+  }
 `
 
 const ImageBox = styled(animated.div)`
@@ -130,12 +130,7 @@ const Index = props => {
       <HeroOuter>
         <HeroInner>
           <animated.p style={pageTitleIn({ delay: 0 })}>
-            I’m Jason – a software designer based in Melbourne, Australia.
-            Currently I’m working on designs systems at{' '}
-            <a href="https://xero.com" target="_blank">
-              Xero
-            </a>
-            .
+            I’m Jason – a software developer with product design background, currently based in Melbourne, Australia.
           </animated.p>
           <ImageBox style={fadeIn({ delay: 600 })}>
             <img src={drawing} alt="line drawing of a man listening to music" />
