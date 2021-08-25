@@ -12,6 +12,10 @@ module.exports = {
     siteUrl: `https://jasonjun.net/`,
     menuLinks: [
       {
+        name: `Works`,
+        slug: `works`,
+      },
+      {
         name: `Writing`,
         slug: `blog`,
       },
@@ -22,10 +26,6 @@ module.exports = {
       {
         name: `Picks`,
         slug: `picks`,
-      },
-      {
-        name: `Works`,
-        slug: `works`,
       },
     ],
     social: {
