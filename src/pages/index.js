@@ -5,6 +5,7 @@ import { introTransition, pageTitleIn, fadeIn } from 'components/animation'
 import Img from 'gatsby-image'
 import Layout from 'components/Layout'
 import SEO from 'components/seo'
+import WorkListItem from 'components/WorkListItem'
 import PostListItem from 'components/PostListItem'
 import ReadingListItem from 'components/ReadingListItem'
 import PicksListItem from 'components/PicksListItem'
@@ -117,6 +118,7 @@ const SectionList = styled(animated.section)`
 const Index = props => {
   const { data } = props
   const siteTitle = data.siteData.siteMetadata.title
+  const works = data.featuredWorks.edges
   const posts = data.recentPosts.edges
   const books = data.recentBooks.edges
   const picks = data.recentPicks.edges
@@ -130,7 +132,7 @@ const Index = props => {
       <HeroOuter>
         <HeroInner>
           <animated.p style={pageTitleIn({ delay: 0 })}>
-            I’m Jason – a software developer with product design background, currently based in Melbourne, Australia.
+            I’m Jason – a software developer with product design background. Currently based in Melbourne, Australia.
           </animated.p>
           <ImageBox style={fadeIn({ delay: 600 })}>
             <img src={drawing} alt="line drawing of a man listening to music" />
@@ -139,21 +141,32 @@ const Index = props => {
       </HeroOuter>
       <IndexHeader style={introTransition({ delay: 500 })}>
         <h2>
-          <Link to="/blog/">Writing</Link>
+          <Link to="/works/">Works</Link>
         </h2>
       </IndexHeader>
       <SectionList style={introTransition({ delay: 600 })}>
+        {works.map(({ node }, index) => {
+          const title = node.frontmatter.title || node.fields.slug
+          return <WorkListItem node={node} index={index} title={title} />
+        })}
+      </SectionList>
+      <IndexHeader style={introTransition({ delay: 700 })}>
+        <h2>
+          <Link to="/blog/">Writing</Link>
+        </h2>
+      </IndexHeader>
+      <SectionList style={introTransition({ delay: 800 })}>
         {posts.map(({ node }, index) => {
           const title = node.frontmatter.title || node.fields.slug
           return <PostListItem node={node} index={index} title={title} />
         })}
       </SectionList>
-      <IndexHeader style={introTransition({ delay: 700 })}>
+      <IndexHeader style={introTransition({ delay: 900 })}>
         <h2>
           <Link to="/reading/">Reading</Link>
         </h2>
       </IndexHeader>
-      <SectionList style={introTransition({ delay: 800 })}>
+      <SectionList style={introTransition({ delay: 1000 })}>
         {books.map(({ node }, index) => {
           const highlights = node.data.Quotes ? node.data.Quotes.length : 'No'
 
@@ -166,12 +179,12 @@ const Index = props => {
           )
         })}
       </SectionList>
-      <IndexHeader style={introTransition({ delay: 500 })}>
+      <IndexHeader style={introTransition({ delay: 1100 })}>
         <h2>
           <Link to="/picks/">Picks</Link>
         </h2>
       </IndexHeader>
-      <SectionList style={introTransition({ delay: 600 })} marginBottom>
+      <SectionList style={introTransition({ delay: 1200 })} marginBottom>
         {picks.map(({ node }, index) => {
           return <PicksListItem node={node} index={index} />
         })}
@@ -263,10 +276,10 @@ export const query = graphql`
       }
     }
 
-    recentWorks: allMdx(
-      filter: { frontmatter: { published: { eq: true }, type: { eq: "work" } } }
+    featuredWorks: allMdx(
+      filter: { frontmatter: { published: { eq: true }, type: { eq: "work" }, favourite: {eq: true} } }
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 2
+      limit: 5
     ) {
       edges {
         node {
@@ -276,6 +289,7 @@ export const query = graphql`
             date(formatString: "YYYY")
             description
             responsibilities
+            favourite
           }
           fields {
             slug
