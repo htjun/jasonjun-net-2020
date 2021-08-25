@@ -31,7 +31,7 @@ const FooterLinks = styled.ul`
   @media ${style.deviceSize.tablet} {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: repeat(5, auto);
     grid-auto-flow: column;
     grid-gap: 10px;
   }
@@ -107,6 +107,12 @@ const Footer = props => {
         <li>
           <a target="_blank" href="https://www.linkedin.com/in/jsonjun/">
             LinkedIn
+            <IconArrowUpRight />
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://github.com/htjun/">
+            GitHub
             <IconArrowUpRight />
           </a>
         </li>
