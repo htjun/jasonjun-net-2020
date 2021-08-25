@@ -1,59 +1,64 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import { animated } from 'react-spring'
 import { introTransition } from 'components/animation'
 import styled from 'styled-components'
 import * as style from 'styles/style'
-import IconArrowUpRight from 'static/image/arrow-up-right.svg'
 
 const WorkListItemWrapper = styled(animated.div)`
   ${style.ListItemStyle}
 
   h2 {
     min-width: 320px;
-    a {
-      svg {
-        fill: ${style.color.navy64};
-        width: 10px;
-        height: 10px;
-        margin-left: 6px;
-        opacity: 0;
-        ${style.TransitionStyle}
-      }
+  }
 
-      &:hover {
-        svg {
-          opacity: 1;
-        }
-      }
+  .additional-cols {
+    width: 100%;
+
+    @media ${style.deviceSize.phablet} {
+      flex-direction: column;
     }
   }
 
   .description {
-    flex-grow: 1;
-    max-width: 360px;
+    width: 360px;
     margin-right: 16px;
     color: ${style.color.navy24};
+    flex-grow: 1;
+
+    @media ${style.deviceSize.landscape} {
+      width: 100%;
+    }
 
     @media ${style.deviceSize.phablet} {
       margin-top: 4px;
+      margin-right: 0;
     }
   }
 
   .tags {
     width: 200px;
+    flex-grow: 1;
 
-    @media ${style.deviceSize.tablet} {
-      width: 300px;
+    @media ${style.deviceSize.landscape} {
+      display: none;
     }
   }
 
   .date {
     text-align: right;
-    min-width: 60px;
+    width: 40px;
+    flex-shrink: 0;
+
+    @media ${style.deviceSize.tablet} {
+      display: none;
+    }
 
     @media ${style.deviceSize.phablet} {
-      display: none;
+      display: block;
+      width: 100%;
+      text-align: left;
+      margin-top: 4px;
     }
   }
 `
@@ -65,14 +70,11 @@ const WorkListItem = props => {
   return (
     <WorkListItemWrapper style={introTransition({ delay: 24 * index })}>
       <h2>
-        <Link to={node.fields.slug}>
-          {title}
-          <IconArrowUpRight class="icon-arrow-up-right" />
-        </Link>
+        <Link to={node.fields.slug}>{title}</Link>
       </h2>
-      <div class="additional-cols">
-        <div class="description">{node.frontmatter.description}</div>
-        <div class="tags">
+      <div className="additional-cols">
+        <div className="description">{node.frontmatter.description}</div>
+        <div className="tags">
           {tags.map((item, index) => {
             return (
               <span key={index}>
@@ -83,7 +85,7 @@ const WorkListItem = props => {
             return <span key={index}>{item}</span>
           })}
         </div>
-        <div class="date">{node.frontmatter.date}</div>
+        <div className="date">{node.frontmatter.date}</div>
       </div>
     </WorkListItemWrapper>
   )
