@@ -147,7 +147,7 @@ const Index = props => {
       <SectionList style={introTransition({ delay: 600 })}>
         {works.map(({ node }, index) => {
           const title = node.frontmatter.title || node.fields.slug
-          return <WorkListItem node={node} index={index} title={title} />
+          return <WorkListItem node={node} index={index} title={title} key={node.id} />
         })}
       </SectionList>
       <IndexHeader style={introTransition({ delay: 700 })}>
@@ -158,7 +158,7 @@ const Index = props => {
       <SectionList style={introTransition({ delay: 800 })}>
         {posts.map(({ node }, index) => {
           const title = node.frontmatter.title || node.fields.slug
-          return <PostListItem node={node} index={index} title={title} />
+          return <PostListItem node={node} index={index} title={title} key={node.id} />
         })}
       </SectionList>
       <IndexHeader style={introTransition({ delay: 900 })}>
@@ -175,6 +175,7 @@ const Index = props => {
               node={node}
               index={index}
               highlights={highlights}
+              key={node.id}
             />
           )
         })}
@@ -186,7 +187,7 @@ const Index = props => {
       </IndexHeader>
       <SectionList style={introTransition({ delay: 1200 })} marginBottom>
         {picks.map(({ node }, index) => {
-          return <PicksListItem node={node} index={index} />
+          return <PicksListItem node={node} index={index} key={node.id} />
         })}
       </SectionList>
     </Layout>
