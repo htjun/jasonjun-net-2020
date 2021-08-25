@@ -92,8 +92,8 @@ const WorksIndex = props => {
               <h2>
                 <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
               </h2>
-              <div class="additional-cols">
-                <div class="tags">
+              <div className="additional-cols">
+                <div className="tags">
                   {tags.map((item, index) => {
                     return (
                       <span key={index}>
@@ -104,7 +104,7 @@ const WorksIndex = props => {
                     return <span key={index}>{item}</span>
                   })}
                 </div>
-                <div class="date">{node.frontmatter.date}</div>
+                <div className="date">{node.frontmatter.date}</div>
               </div>
             </WorksListItem>
           )

@@ -62,12 +62,12 @@ const ReadingListItem = props => {
     <ReadingListItemWrapper style={introTransition({ delay: 24 * index })}>
       <h2>
         <Link to={`/reading/${node.data.Slug}`}>{node.data.Title}</Link>
-        <span class="author">
-          <span class="dash">-</span>
+        <span className="author">
+          <span className="dash">-</span>
           {node.data.Author.map((person, i) => {
             return (
               <React.Fragment key={i}>
-                <span class="name">{person.data.Name}</span>
+                <span className="name">{person.data.Name}</span>
                 {i < node.data.Author.length - 1 ? ', ' : null}
               </React.Fragment>
             )
@@ -75,10 +75,10 @@ const ReadingListItem = props => {
         </span>
       </h2>
 
-      <div class="additional-cols">
-        <div class="format">{node.data.Format}</div>
-        <div class="lang">{node.data.Language}</div>
-        <div class="highlight">{highlights} highlights</div>
+      <div className="additional-cols">
+        <div className="format">{node.data.Format}</div>
+        <div className="lang">{node.data.Language}</div>
+        <div className="highlight">{highlights} highlights</div>
       </div>
     </ReadingListItemWrapper>
   )

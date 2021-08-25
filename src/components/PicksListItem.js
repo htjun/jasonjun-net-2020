@@ -56,12 +56,12 @@ const PicksListItem = props => {
       <h2>
         <a href={node.data.Link} target="_blank">
           {node.data.Title}
-          <IconArrowUpRight class="icon-arrow-up-right" />
+          <IconArrowUpRight className="icon-arrow-up-right" />
         </a>
       </h2>
-      <div class="additional-cols">
-        <div class="category">{node.data.Category[0].data.Type}</div>
-        <div class="note">{node.data.Note}</div>
+      <div className="additional-cols">
+        <div className="category">{node.data.Category[0].data.Type}</div>
+        <div className="note">{node.data.Note}</div>
       </div>
     </PicksListItemWrapper>
   )

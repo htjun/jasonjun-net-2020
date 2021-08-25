@@ -176,12 +176,12 @@ const Book = props => {
             quotes.map((quote, index) => {
               return (
                 <Quote key={index}>
-                  <div class="quote">{quote.data.Content}</div>
+                  <div className="quote">{quote.data.Content}</div>
                   {quote.data.Person &&
                     quote.data.Person.map((person, i) => {
                       return (
-                        <div class="names" key={i}>
-                          <span class="name">{person.data.Name}</span>
+                        <div className="names" key={i}>
+                          <span className="name">{person.data.Name}</span>
                           {i < quote.data.Person.length - 1 ? ', ' : null}
                         </div>
                       )

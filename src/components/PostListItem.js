@@ -46,16 +46,16 @@ const PostListItem = props => {
       <h2>
         <Link to={node.fields.slug}>{title}</Link>
       </h2>
-      <div class="additional-cols">
-        <div class="date">{node.frontmatter.date}</div>
-        <div class="lang">
+      <div className="additional-cols">
+        <div className="date">{node.frontmatter.date}</div>
+        <div className="lang">
           {node.frontmatter.lang === 'EN'
             ? 'English'
             : node.frontmatter.lang === 'KR'
             ? 'Korean'
             : 'Unknown'}
         </div>
-        <div class="time-to-read">{node.timeToRead} min read</div>
+        <div className="time-to-read">{node.timeToRead} min read</div>
       </div>
     </PostListItemWrapper>
   )

@@ -266,16 +266,16 @@ const WorkTemplate = props => {
             </animated.h1>
             <WorkHeaderDetailsList>
               <animated.li style={introTransition({ delay: 500 })}>
-                <div class="label">Year</div>
-                <div class="value">{work.frontmatter.date}</div>
+                <div className="label">Year</div>
+                <div className="value">{work.frontmatter.date}</div>
               </animated.li>
               <animated.li style={introTransition({ delay: 540 })}>
-                <div class="label">Company</div>
-                <div class="value">{work.frontmatter.company}</div>
+                <div className="label">Company</div>
+                <div className="value">{work.frontmatter.company}</div>
               </animated.li>
               <animated.li style={introTransition({ delay: 580 })}>
-                <div class="label">Responsibilities</div>
-                <div class="value">
+                <div className="label">Responsibilities</div>
+                <div className="value">
                   {tags.map((item, index) => {
                     return (
                       <span key={index}>
@@ -290,7 +290,7 @@ const WorkTemplate = props => {
           </WorkHeaderInner>
 
           <animated.div
-            class="icon-chevron-down"
+            className="icon-chevron-down"
             style={introTransition({ delay: 640 })}
           >
             <IconChevronDown />
@@ -305,20 +305,20 @@ const WorkTemplate = props => {
           <ContentFooter>
             <WorkFooterDetailsList>
               <li>
-                <div class="label">Project</div>
-                <div class="value">{work.frontmatter.title}</div>
+                <div className="label">Project</div>
+                <div className="value">{work.frontmatter.title}</div>
               </li>
               <li>
-                <div class="label">Year</div>
-                <div class="value">{work.frontmatter.date}</div>
+                <div className="label">Year</div>
+                <div className="value">{work.frontmatter.date}</div>
               </li>
               <li>
-                <div class="label">Company</div>
-                <div class="value">{work.frontmatter.company}</div>
+                <div className="label">Company</div>
+                <div className="value">{work.frontmatter.company}</div>
               </li>
               <li>
-                <div class="label">Responsibilities</div>
-                <div class="value">
+                <div className="label">Responsibilities</div>
+                <div className="value">
                   {tags.map((item, index) => {
                     return (
                       <span key={index}>
