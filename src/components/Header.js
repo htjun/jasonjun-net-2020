@@ -13,7 +13,7 @@ const NavWrapper = styled.div`
   padding-top: 32px;
   padding-bottom: 32px;
 
-  @media ${style.deviceSize.mobile} {
+  @media ${style.deviceSize.phablet} {
     padding-top: 16px;
     padding-bottom: 16px;
     flex-direction: column;
@@ -44,7 +44,7 @@ const NavMenu = styled.ul`
   display: flex;
   margin-top: 8px;
 
-  @media ${style.deviceSize.mobile} {
+  @media ${style.deviceSize.phablet} {
     margin-top: 16px;
     justify-content: space-between;
     border-top: 1px solid ${style.color.navy92};
@@ -78,6 +78,10 @@ const NavMenu = styled.ul`
       font-weight: ${style.fontWeight.medium};
       letter-spacing: ${style.textLetterSpacing.tight};
       color: ${style.color.navy56};
+
+      @media ${style.deviceSize.mobile} {
+        font-size: ${style.fontSize.sm};
+      }
 
       &:hover {
         @media (hover: hover) {
