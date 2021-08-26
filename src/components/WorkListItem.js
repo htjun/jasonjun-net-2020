@@ -4,12 +4,30 @@ import { animated } from 'react-spring'
 import { introTransition } from 'components/animation'
 import styled from 'styled-components'
 import * as style from 'styles/style'
+import IconLink from 'static/image/link.svg'
 
 const WorkListItemWrapper = styled(animated.div)`
   ${style.ListItemStyle}
 
   h2 {
     min-width: 320px;
+
+    a {
+      svg {
+        fill: ${style.color.navy72};
+        width: 14px;
+        height: 14px;
+        margin-left: 8px;
+        margin-bottom: -1px;
+        ${style.TransitionStyle}
+      }
+
+      &:hover {
+        svg {
+          fill: ${style.color.navy48};
+        }
+      }
+    }
   }
 
   .additional-cols {
@@ -66,28 +84,66 @@ const WorkListItemWrapper = styled(animated.div)`
 const WorkListItem = props => {
   const { node, index, title } = props
   const tags = node.frontmatter.responsibilities
+  const noContent = node.frontmatter.no_content ? true : false
 
   return (
-    <WorkListItemWrapper style={introTransition({ delay: 24 * index })}>
-      <h2>
-        <Link to={node.fields.slug}>{title}</Link>
-      </h2>
-      <div className="additional-cols">
-        <div className="description">{node.frontmatter.description}</div>
-        <div className="tags">
-          {tags.map((item, index) => {
-            return (
-              <span key={index}>
-                {item}
-                {tags.length !== index + 1 ? ', ' : null}
-              </span>
-            )
-            return <span key={index}>{item}</span>
-          })}
-        </div>
-        <div className="date">{node.frontmatter.date}</div>
-      </div>
-    </WorkListItemWrapper>
+    <>
+      {
+        {
+          true: (
+            <WorkListItemWrapper style={introTransition({ delay: 24 * index })}>
+              <h2>
+                <a href={node.frontmatter.outlink} target="_blank">
+                  {title}
+                  <IconLink />
+                </a>
+              </h2>
+              <div className="additional-cols">
+                <div className="description">
+                  {node.frontmatter.description}
+                </div>
+                <div className="tags">
+                  {tags.map((item, index) => {
+                    return (
+                      <span key={index}>
+                        {item}
+                        {tags.length !== index + 1 ? ', ' : null}
+                      </span>
+                    )
+                    return <span key={index}>{item}</span>
+                  })}
+                </div>
+                <div className="date">{node.frontmatter.date}</div>
+              </div>
+            </WorkListItemWrapper>
+          ),
+          false: (
+            <WorkListItemWrapper style={introTransition({ delay: 24 * index })}>
+              <h2>
+                <Link to={node.fields.slug}>{title}</Link>
+              </h2>
+              <div className="additional-cols">
+                <div className="description">
+                  {node.frontmatter.description}
+                </div>
+                <div className="tags">
+                  {tags.map((item, index) => {
+                    return (
+                      <span key={index}>
+                        {item}
+                        {tags.length !== index + 1 ? ', ' : null}
+                      </span>
+                    )
+                    return <span key={index}>{item}</span>
+                  })}
+                </div>
+                <div className="date">{node.frontmatter.date}</div>
+              </div>
+            </WorkListItemWrapper>
+          ),
+        }[noContent]
+      }
+    </>
   )
 }
 

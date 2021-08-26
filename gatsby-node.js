@@ -72,6 +72,7 @@ exports.createPages = ({ graphql, actions }) => {
               id
               frontmatter {
                 title
+                no_content
               }
               fields {
                 slug
@@ -229,16 +230,19 @@ exports.createPages = ({ graphql, actions }) => {
       const previousWork =
         index === works.length - 1 ? null : works[index + 1].node
       const nextWork = index === 0 ? null : works[index - 1].node
+      const noContent = work.node.frontmatter.no_content
 
-      createPage({
-        path: work.node.fields.slug,
-        component: WorkTemplate,
-        context: {
-          slug: work.node.fields.slug,
-          previous: previousWork,
-          next: nextWork,
-        },
-      })
+      if (!noContent) {
+        createPage({
+          path: work.node.fields.slug,
+          component: WorkTemplate,
+          context: {
+            slug: work.node.fields.slug,
+            previous: previousWork,
+            next: nextWork,
+          },
+        })
+      }
     })
   })
 }

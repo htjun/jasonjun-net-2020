@@ -8,6 +8,7 @@ import SEO from 'components/seo'
 import Pagination from 'components/Pagination'
 import styled, { css } from 'styled-components'
 import * as style from 'styles/style'
+import IconLink from 'static/image/link.svg'
 
 const WorksList = styled.section`
   ${style.MaxWidthStyle}
@@ -19,6 +20,23 @@ const WorksListItem = styled(animated.div)`
 
   h2 {
     min-width: 200px;
+
+    a {
+      svg {
+        fill: ${style.color.navy72};
+        width: 14px;
+        height: 14px;
+        margin-left: 8px;
+        margin-bottom: -1px;
+        ${style.TransitionStyle}
+      }
+
+      &:hover {
+        svg {
+          fill: ${style.color.navy48};
+        }
+      }
+    }
   }
 
   .tags {
@@ -60,6 +78,23 @@ const WorksIndex = props => {
   const works = data.allMdx.edges
   const worksCount = data.allMdx.totalCount
 
+  const titleLink = (node) => {
+    const noContent = node.frontmatter.no_content ? true : false
+
+    if (noContent) {
+      return (
+        <a href={node.frontmatter.outlink} target="_blank">
+          {node.frontmatter.title}
+          <IconLink />
+        </a>
+      )
+    } else {
+      return (
+        <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+      )
+    }
+  }
+
   return (
     <Layout
       location={props.location}
@@ -90,7 +125,7 @@ const WorksIndex = props => {
               favourite={node.frontmatter.favourite}
             >
               <h2>
-                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+                {titleLink(node)}
               </h2>
               <div className="additional-cols">
                 <div className="tags">
@@ -135,6 +170,8 @@ export const query = graphql`
             responsibilities
             theme_color
             favourite
+            no_content
+            outlink
           }
           fields {
             slug

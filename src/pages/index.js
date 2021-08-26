@@ -291,6 +291,8 @@ export const query = graphql`
             description
             responsibilities
             favourite
+            no_content
+            outlink
           }
           fields {
             slug
