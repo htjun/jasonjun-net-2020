@@ -58,7 +58,7 @@ const WorkListItemWrapper = styled(animated.div)`
       display: block;
       width: 100%;
       text-align: left;
-      margin-top: 4px;
+      margin-top: 8px;
     }
   }
 `
