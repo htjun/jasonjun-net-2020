@@ -205,7 +205,7 @@ export const query = graphql`
     }
 
     recentPosts: allMdx(
-      limit: 5
+      limit: 7
       filter: { frontmatter: { published: { eq: true }, type: { ne: "work" } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
@@ -226,7 +226,7 @@ export const query = graphql`
     }
 
     recentBooks: allAirtable(
-      limit: 5
+      limit: 7
       filter: {
         table: { eq: "Source" }
         data: { Type: { eq: "Book" }, Live: { eq: true } }
@@ -257,7 +257,7 @@ export const query = graphql`
 
     recentPicks: allAirtable(
       filter: { table: { eq: "Picks" }, data: { Published: { eq: true } } }
-      limit: 5
+      limit: 7
       sort: { fields: data___Created_time, order: DESC }
     ) {
       edges {
@@ -280,7 +280,7 @@ export const query = graphql`
     featuredWorks: allMdx(
       filter: { frontmatter: { published: { eq: true }, type: { eq: "work" }, favourite: {eq: true} } }
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 5
+      limit: 7
     ) {
       edges {
         node {
