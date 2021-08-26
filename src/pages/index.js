@@ -2,7 +2,6 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import { animated } from 'react-spring'
 import { introTransition, pageTitleIn, fadeIn } from 'components/animation'
-import Img from 'gatsby-image'
 import Layout from 'components/Layout'
 import SEO from 'components/seo'
 import WorkListItem from 'components/WorkListItem'
@@ -80,6 +79,7 @@ const ImageBox = styled(animated.div)`
   img {
     width: 100%;
     opacity: 0.6;
+    aspect-ratio: 1 / 1.15;
   }
 `
 
