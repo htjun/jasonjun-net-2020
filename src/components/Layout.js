@@ -14,6 +14,7 @@ const GlobalStyle = style.GlobalStyle
 const OuterWrapper = styled.div`
   height: 100%;
   margin: 0;
+  min-width: 320px;
 `
 
 const InnerWrapper = styled.div`
