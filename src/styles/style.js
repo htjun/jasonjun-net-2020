@@ -82,6 +82,7 @@ export const textLetterSpacing = {
 export const objectSize = {
   maxWidth: '1000px',
   contentMaxWidth: '720px',
+  contentMaxWidthSmall: '600px',
   footerHeight: '148px',
 }
 
