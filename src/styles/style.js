@@ -33,6 +33,7 @@ export const color = {
   navy92: 'hsl(228, 12%, 92%)',
   navy94: 'hsl(228, 12%, 94%)',
   navy96: 'hsl(228, 12%, 96%)',
+  blue32: 'hsl(228, 64%, 32%)',
   blue48: 'hsl(228, 64%, 48%)',
   blue64: 'hsl(228, 64%, 64%)',
   blue72: 'hsl(228, 64%, 72%)',
