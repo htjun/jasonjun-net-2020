@@ -4,7 +4,7 @@ import Layout from 'components/Layout'
 import styled, { css } from 'styled-components'
 import * as style from 'styles/style'
 
-const NotFoundWrapper = styled.section`
+const NotFoundWrapper = styled.main`
   ${style.MaxWidthStyle};
   margin-top: calc(48px + 10vw);
 
