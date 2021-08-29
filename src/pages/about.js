@@ -137,9 +137,10 @@ const AboutPage = props => {
               design systems team.
             </p>
             <p>
-              Design system works are often quite small and incremental, but
-              very impactful. I wrote a <Link to="#">blog post</Link> about one
-              of the works I've done at Xero.
+              As a designer in the design systems team, my primary job was to
+              continuously improve design system documents and design libraries
+              in order to help other designers and developers use the design
+              system easier.
             </p>
             <p>
               I also initiated and developed the first version of the Xero
