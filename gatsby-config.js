@@ -8,7 +8,7 @@ module.exports = {
   siteMetadata: {
     title: `Jason Jun`,
     author: `Jason Jun`,
-    description: `I’m Jason – a software developer with product design background. Currently based in Melbourne, Australia.`,
+    description: `I’m Jason – a user interface designer and front-end developer . Currently based in Melbourne, Australia.`,
     siteUrl: `https://jasonjun.net/`,
     menuLinks: [
       {
