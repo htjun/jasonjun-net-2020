@@ -132,7 +132,7 @@ const Index = props => {
       <HeroOuter>
         <HeroInner>
           <animated.p style={pageTitleIn({ delay: 0 })}>
-            I’m Jason – a software developer with product design background. Currently based in Melbourne, Australia.
+            I’m Jason – a user interface designer and front-end developer. Currently based in Melbourne, Australia.
           </animated.p>
           <ImageBox style={fadeIn({ delay: 600 })}>
             <img src={drawing} alt="line drawing of a man listening to music" />
