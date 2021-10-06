@@ -79,6 +79,10 @@ const NavMenu = styled.ul`
       letter-spacing: ${style.textLetterSpacing.tight};
       color: ${style.color.navy56};
 
+      @media ${style.deviceSize.mobile} {
+        font-size: ${style.fontSize.sm};
+      }
+
       &:hover {
         @media (hover: hover) {
           color: ${style.color.navy24};
