@@ -187,20 +187,6 @@ const AboutPage = props => {
               <Link to="/works/rbi-emails/">developed email templates</Link>{' '}
               using Foundation for Emails.
             </p>
-
-            <h3>DotDev</h3>
-            <p>
-              In 2017, I worked at Melbourne-based agency DotDev as a front-end
-              developer/UI designer.
-            </p>
-            <p>
-              I participated in several projects including{' '}
-              <Link to="/works/mercer/">Mercer Interactive Report</Link> (in
-              charge of design and front-end development) and{' '}
-              <Link to="/works/t2/">The Power of T2 campaign</Link> (in charge
-              of front-end development). Both projects were built with Next.js
-              and GSAP.
-            </p>
           </animated.article>
         </ContentBody>
       </AboutWrapper>
