@@ -109,15 +109,12 @@ const AboutPage = props => {
           <HandEmoji>👋</HandEmoji>
           <animated.article style={introTransition({ delay: 600 })}>
             <p>
-              Hello, I'm Jason, a software developer with a UI and product
-              design background.
+              Hello, I'm Jason, a UI designer and front-end develooper based in
+              Melbourne, Australia.
             </p>
             <p>
-              I love coding with JavaScript and CSS, and have experience working
-              with React, Gatsby, Next.js, Vue.js and styled-components.
-            </p>
-            <p>
-              Recently I built two small websites as personal projects: <a href="https://gh-profile-viewer.vercel.app/" target="_blank">GitHub Profile Viewer</a> and <a href="https://hn-next.vercel.app/" target="_blank">Static Hackner News</a> with Next.js.
+              I love and am good at crafting high-quality UI solutions, and have
+              working with React, Gatsby, Next.js, Vue.js and styled-components.
             </p>
             <p>
               I built this website with Gatsby, MDX, styled-components and
@@ -126,13 +123,22 @@ const AboutPage = props => {
               <Link to="/blog/2019/using-airtable-with-gatsby/">blog post</Link>{' '}
               about using Airtable API with Gatsby.
             </p>
+            <p>
+              If you would like to know about my background and story, here's{' '}
+              <a
+                href="https://www.loversmagazine.com/interviews/jason-jun"
+                target="_blank"
+              >
+                my interview with Interface Lovers magazine
+              </a>{' '}
+              in July 2019.
+            </p>
 
             <h2>Work experiences</h2>
 
             <h3>Xero</h3>
             <p>
-              Until recently, I worked at Xero as a product designer in the
-              design systems team.
+              I worked at Xero as a product designer in the design systems team.
             </p>
             <p>
               As a designer in the design systems team, my primary job was to
