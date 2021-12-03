@@ -15,8 +15,8 @@ const PicksList = styled.section`
 
 const PicksIndex = props => {
   const { data, pageContext } = props
-  const picks = data.allAirtable.edges
-  const picksCount = data.allAirtable.totalCount
+  const picks = data.allNotion.edges
+  const picksCount = data.allNotion.totalCount
 
   return (
     <Layout
@@ -40,26 +40,34 @@ export default PicksIndex
 
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
-    allAirtable(
+    allNotion(
+      sort: { fields: properties___Order___value, order: DESC }
       limit: $limit
       skip: $skip
-      filter: { table: { eq: "Picks" }, data: { Published: { eq: true } } }
-      sort: { order: DESC, fields: data___Created_time }
+      filter: { properties: { Published: { value: { eq: true } } } }
     ) {
       edges {
         node {
           id
-          data {
-            Title
-            Note
-            Link
-            Favourite
+          title
+          properties {
             Category {
-              data {
-                Type
+              value {
+                name
               }
             }
-            Created_time(fromNow: true)
+            Link {
+              value
+            }
+            Published {
+              value
+            }
+            Note {
+              value
+            }
+            Order {
+              value
+            }
           }
         }
       }
