@@ -132,8 +132,7 @@ const Index = props => {
       <HeroOuter>
         <HeroInner>
           <animated.p style={pageTitleIn({ delay: 0 })}>
-            I’m Jason – a user interface designer and front-end developer.
-            Currently based in Melbourne, Australia.
+            I’m Jason – a user interface designer and front-end developer. Currently based in Melbourne, Australia.
           </animated.p>
           <ImageBox style={fadeIn({ delay: 600 })}>
             <img src={drawing} alt="line drawing of a man listening to music" />
@@ -148,14 +147,7 @@ const Index = props => {
       <SectionList style={introTransition({ delay: 600 })}>
         {works.map(({ node }, index) => {
           const title = node.frontmatter.title || node.fields.slug
-          return (
-            <WorkListItem
-              node={node}
-              index={index}
-              title={title}
-              key={node.id}
-            />
-          )
+          return <WorkListItem node={node} index={index} title={title} key={node.id} />
         })}
       </SectionList>
       <IndexHeader style={introTransition({ delay: 700 })}>
@@ -166,14 +158,7 @@ const Index = props => {
       <SectionList style={introTransition({ delay: 800 })}>
         {posts.map(({ node }, index) => {
           const title = node.frontmatter.title || node.fields.slug
-          return (
-            <PostListItem
-              node={node}
-              index={index}
-              title={title}
-              key={node.id}
-            />
-          )
+          return <PostListItem node={node} index={index} title={title} key={node.id} />
         })}
       </SectionList>
       <IndexHeader style={introTransition({ delay: 900 })}>
@@ -270,47 +255,30 @@ export const query = graphql`
       }
     }
 
-    recentPicks: allNotion(
-      sort: { fields: properties___Order___value, order: DESC }
+    recentPicks: allAirtable(
+      filter: { table: { eq: "Picks" }, data: { Published: { eq: true } } }
       limit: 7
-      filter: { properties: { Published: { value: { eq: true } } } }
+      sort: { fields: data___Created_time, order: DESC }
     ) {
       edges {
         node {
           id
-          title
-          properties {
+          data {
+            Title
+            Link
+            Note
             Category {
-              value {
-                name
+              data {
+                Type
               }
-            }
-            Link {
-              value
-            }
-            Published {
-              value
-            }
-            Note {
-              value
-            }
-            Order {
-              value
             }
           }
         }
       }
-      totalCount
     }
 
     featuredWorks: allMdx(
-      filter: {
-        frontmatter: {
-          published: { eq: true }
-          type: { eq: "work" }
-          favourite: { eq: true }
-        }
-      }
+      filter: { frontmatter: { published: { eq: true }, type: { eq: "work" }, favourite: {eq: true} } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 7
     ) {
