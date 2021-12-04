@@ -60,7 +60,7 @@ module.exports = {
         extensions: ['.mdx', '.md'],
         // a workaround to solve mdx-remark plugin compat issue
         // https://github.com/gatsbyjs/gatsby/issues/15486
-        plugins: [`gatsby-remark-images`, `gatsby-remark-component`],
+        plugins: [`gatsby-remark-component`],
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
