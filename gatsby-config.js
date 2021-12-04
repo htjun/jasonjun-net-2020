@@ -244,15 +244,6 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: `gatsby-source-notion-api`,
-      options: {
-        token: process.env.NOTION_TOKEN,
-        databaseId: `14e00360171844a09f77d846e62ec439`,
-        propsToFrontmatter: true,
-        lowerTitleLevel: true,
-      },
-    },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,

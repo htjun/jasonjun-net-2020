@@ -54,8 +54,8 @@ exports.createPages = ({ graphql, actions }) => {
           totalCount
         }
 
-        picks: allNotion(
-          filter: { properties: { Published: { value: { eq: true } } } }
+        picks: allAirtable(
+          filter: { table: { eq: "Picks" }, data: { Published: { eq: true } } }
         ) {
           totalCount
         }
