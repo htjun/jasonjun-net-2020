@@ -109,7 +109,7 @@ const AboutPage = props => {
           <HandEmoji>👋</HandEmoji>
           <animated.article style={introTransition({ delay: 600 })}>
             <p>
-              Hello, I'm Jason, a UI designer and front-end develooper based in
+              Hello, I'm Jason, a UI designer and front-end developer based in
               Melbourne, Australia.
             </p>
             <p>
