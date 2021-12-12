@@ -133,66 +133,6 @@ const AboutPage = props => {
               </a>{' '}
               in July 2019.
             </p>
-
-            <h2>Work experiences</h2>
-
-            <h3>Xero</h3>
-            <p>
-              I worked at Xero as a product designer in the design systems team.
-            </p>
-            <p>
-              As a designer in the design systems team, my primary job was to
-              continuously improve design system documents and design libraries
-              in order to help other designers and developers use the design
-              system easier.
-            </p>
-            <p>
-              I also initiated and developed the first version of the Xero
-              design system document finder Figma plugin as part of an approved
-              personal project at Xero. I wrote a{' '}
-              <Link to="/blog/2020/creating-a-document-finder-plugin-for-figma/">
-                blog post
-              </Link>{' '}
-              about the process of it.
-            </p>
-
-            <h3>Envato</h3>
-            <p>
-              At Envato, I helped the design team's transition from Sketch to
-              Figma, and created/managed the Figma library for Envato Elements.
-            </p>
-            <p>
-              Upon finishing the design tool transition, I helped to initially
-              set up the Figma library and systemic typography.{' '}
-              <Link to="/works/envato-ds/">Here</Link> is a more detailed
-              summary of this work.
-            </p>
-            <p>
-              I also developed Envato's logo asset download page as a side
-              project and wrote a{' '}
-              <Link to="/blog/2020/developing-a-logo-asset-component/">
-                blog post
-              </Link>{' '}
-              about the process.
-            </p>
-
-            <h3>Carsales</h3>
-            <p>
-              I worked on the Redbook Inspect team in Carsales as the only
-              designer on the team. I was able to create a variety of works
-              there, from UI prototyping to brand design.
-            </p>
-            <p>
-              I helped the product's transition of reports from PDF to
-              interactive web format, and redesigned the main website as well. I
-              also designed the initial brand concept of their new product,
-              Olasio.
-            </p>
-            <p>
-              I also redesigned their emails and{' '}
-              <Link to="/works/rbi-emails/">developed email templates</Link>{' '}
-              using Foundation for Emails.
-            </p>
           </animated.article>
         </ContentBody>
       </AboutWrapper>
