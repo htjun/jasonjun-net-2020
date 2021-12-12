@@ -56,12 +56,12 @@ const WorksListItem = styled(animated.div)`
     }
   }
 
-  ${props =>
+  /* ${props =>
     props.favourite === true &&
     css`
       &:before {
         display: block;
-        content: "★";
+        content: '★';
         color: ${style.color.blue72};
         position: absolute;
         left: -24px;
@@ -70,7 +70,7 @@ const WorksListItem = styled(animated.div)`
           display: none;
         }
       }
-    `}
+    `} */
 `
 
 const WorksIndex = props => {
@@ -78,7 +78,7 @@ const WorksIndex = props => {
   const works = data.allMdx.edges
   const worksCount = data.allMdx.totalCount
 
-  const titleLink = (node) => {
+  const titleLink = node => {
     const noContent = node.frontmatter.no_content ? true : false
 
     if (noContent) {
@@ -89,9 +89,7 @@ const WorksIndex = props => {
         </a>
       )
     } else {
-      return (
-        <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-      )
+      return <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
     }
   }
 
@@ -124,9 +122,7 @@ const WorksIndex = props => {
               style={introTransition({ delay: 20 * index })}
               favourite={node.frontmatter.favourite}
             >
-              <h2>
-                {titleLink(node)}
-              </h2>
+              <h2>{titleLink(node)}</h2>
               <div className="additional-cols">
                 <div className="tags">
                   {tags.map((item, index) => {
