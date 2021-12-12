@@ -167,6 +167,7 @@ module.exports = {
               allMdx(
                 limit: 1000,
                 sort: { order: DESC, fields: [frontmatter___date] },
+                filter: {fields: {slug: {ne: null}}}
               ) {
                 edges {
                   node {
