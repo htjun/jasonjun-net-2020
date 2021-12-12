@@ -167,6 +167,7 @@ module.exports = {
               allMdx(
                 limit: 1000,
                 sort: { order: DESC, fields: [frontmatter___date] },
+                filter: {fields: {slug: {ne: null}}}
               ) {
                 edges {
                   node {
@@ -220,15 +221,6 @@ module.exports = {
             tableLinks: ['Author', 'Quotes'],
             mapping: { Cover: 'fileNode' },
           },
-          {
-            baseId: 'appKUOkGIcCPFfPYL',
-            tableName: 'Picks',
-            tableLinks: ['Category'],
-          },
-          {
-            baseId: 'appKUOkGIcCPFfPYL',
-            tableName: 'Categories',
-          },
         ],
       },
     },
@@ -242,6 +234,15 @@ module.exports = {
             'Noto Serif KR:500,900:korean&display=fallback',
           ],
         },
+      },
+    },
+    {
+      resolve: `gatsby-source-notion-api`,
+      options: {
+        token: process.env.NOTION_TOKEN,
+        databaseId: `14e00360171844a09f77d846e62ec439`,
+        propsToFrontmatter: true,
+        lowerTitleLevel: true,
       },
     },
     `gatsby-plugin-offline`,

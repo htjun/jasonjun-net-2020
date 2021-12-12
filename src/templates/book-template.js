@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import { animated } from 'react-spring'
 import { introTransition } from 'components/animation'
 import Layout from 'components/Layout'
@@ -134,7 +134,9 @@ const Book = props => {
         <BookHeader style={introTransition({ delay: 0 })}>
           {coverImage !== null && (
             <BookCover>
-              <Img fluid={coverImage.localFiles[0].childImageSharp.fluid} />
+              <GatsbyImage
+                image={coverImage.localFiles[0].childImageSharp.gatsbyImageData}
+              />
             </BookCover>
           )}
           <BookInfo>
@@ -212,12 +214,7 @@ export const bookQuery = graphql`
         Cover {
           localFiles {
             childImageSharp {
-              fluid(maxWidth: 512) {
-                ...GatsbyImageSharpFluid
-              }
-              fixed(quality: 10, width: 100) {
-                src
-              }
+              gatsbyImageData(width: 512)
             }
           }
         }

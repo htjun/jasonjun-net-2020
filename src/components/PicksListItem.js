@@ -54,14 +54,14 @@ const PicksListItem = props => {
   return (
     <PicksListItemWrapper style={introTransition({ delay: 24 * index })}>
       <h2>
-        <a href={node.data.Link} target="_blank">
-          {node.data.Title}
+        <a href={node.properties.Link.value} target="_blank">
+          {node.title}
           <IconArrowUpRight className="icon-arrow-up-right" />
         </a>
       </h2>
       <div className="additional-cols">
-        <div className="category">{node.data.Category[0].data.Type}</div>
-        <div className="note">{node.data.Note}</div>
+        <div className="category">{node.properties.Category.value.name}</div>
+        <div className="note">{node.properties.Note.value}</div>
       </div>
     </PicksListItemWrapper>
   )

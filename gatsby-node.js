@@ -54,8 +54,8 @@ exports.createPages = ({ graphql, actions }) => {
           totalCount
         }
 
-        picks: allAirtable(
-          filter: { table: { eq: "Picks" }, data: { Published: { eq: true } } }
+        picks: allNotion(
+          filter: { properties: { Published: { value: { eq: true } } } }
         ) {
           totalCount
         }
@@ -250,7 +250,7 @@ exports.createPages = ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === `Mdx`) {
+  if (node.internal.type.toLowerCase() === 'mdx' && node.fileAbsolutePath) {
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,
