@@ -12,6 +12,9 @@ const PicksListItemWrapper = styled(animated.div)`
   h2 {
     min-width: 200px;
     a {
+      display: inline-flex;
+      align-items: center;
+
       svg {
         fill: ${style.color.navy64};
         width: 10px;
