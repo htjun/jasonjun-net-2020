@@ -1,6 +1,4 @@
-import { Link } from 'gatsby'
 import React from 'react'
-import { useSpring } from 'react-spring'
 import styled, { css } from 'styled-components'
 import * as style from 'styles/style'
 import IconArrowUpRight from 'static/image/arrow-up-right.svg'
@@ -14,7 +12,7 @@ const FooterWrapper = styled.footer`
     padding: 64px 0 32px 0;
   }
 
-  ${props =>
+  ${(props) =>
     props.location
       ? css`
           background: ${style.color.grey96};
@@ -83,10 +81,14 @@ const FooterBackToTop = styled.li`
   margin-left: auto;
 `
 
-const Footer = props => {
+const Footer = (props) => {
   const { location } = props
-  const [, setY] = useSpring(() => ({ y: 0 }))
   const postFooter = location === 'post' || location === 'work' ? true : false
+
+  const scrollTop = (e) => {
+    e.preventDefault()
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <FooterWrapper location={postFooter}>
@@ -117,20 +119,7 @@ const Footer = props => {
           </a>
         </li>
         <FooterBackToTop>
-          <a
-            onClick={e => {
-              e.preventDefault()
-
-              setY({
-                y: 0,
-                reset: true,
-                from: { y: window.scrollY },
-                onFrame: props => window.scroll(0, props.y),
-              })
-            }}
-          >
-            ↑ Back to top
-          </a>
+          <a onClick={scrollTop}>↑ Back to top</a>
         </FooterBackToTop>
       </FooterLinks>
     </FooterWrapper>
