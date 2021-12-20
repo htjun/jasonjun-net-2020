@@ -56,7 +56,9 @@ const FooterLinks = styled.ul`
 
     a {
       ${style.LinkStyle}
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
       cursor: pointer;
 
       svg {

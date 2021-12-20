@@ -366,7 +366,8 @@ export const ListItemStyle = css`
 
     a {
       ${LinkStyle}
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
     }
   }
 `

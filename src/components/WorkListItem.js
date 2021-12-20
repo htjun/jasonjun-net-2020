@@ -81,7 +81,7 @@ const WorkListItemWrapper = styled(animated.div)`
   }
 `
 
-const WorkListItem = props => {
+const WorkListItem = (props) => {
   const { node, index, title } = props
   const tags = node.frontmatter.responsibilities
   const noContent = node.frontmatter.no_content ? true : false
