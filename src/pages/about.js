@@ -109,19 +109,15 @@ const AboutPage = props => {
           <HandEmoji>👋</HandEmoji>
           <animated.article style={introTransition({ delay: 600 })}>
             <p>
-              Hello, I'm Jason, a UI designer and front-end developer based in
-              Melbourne, Australia.
-            </p>
-            <p>
-              I love and am good at crafting high-quality UI solutions, and have
-              working with React, Gatsby, Next.js, Vue.js and styled-components.
+              Hello, I'm Jason, a front-end developer with UI design background, based in
+              Melbourne, Australia. Currently I'm working at <a href="https://envato.com" target="_blank">Envato</a> as a Software Engineer.
             </p>
             <p>
               I built this website with Gatsby, MDX, styled-components and
-              react-spring (for UI animations). The Reading and Picks content
-              are hosted on Airtable. I wrote a{' '}
+              react-spring (for UI animations). The Reading page contents
+              are hosted on my Airtable, and I wrote a{' '}
               <Link to="/blog/2019/using-airtable-with-gatsby/">blog post</Link>{' '}
-              about using Airtable API with Gatsby.
+              about using Airtable API with Gatsby. And the Picks are hosted on my Notion.
             </p>
             <p>
               If you would like to know about my background and story, here's{' '}
