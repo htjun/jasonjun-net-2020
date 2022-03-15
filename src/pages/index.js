@@ -118,6 +118,7 @@ const SectionList = styled(animated.section)`
 const Index = props => {
   const { data } = props
   const siteTitle = data.siteData.siteMetadata.title
+  const introduction = data.siteData.siteMetadata.description
   const posts = data.recentPosts.edges
   const books = data.recentBooks.edges
   const picks = data.recentPicks.edges
@@ -130,10 +131,7 @@ const Index = props => {
       />
       <HeroOuter>
         <HeroInner>
-          <animated.p style={pageTitleIn({ delay: 0 })}>
-            I’m Jason – a user interface designer and front-end developer.
-            Currently based in Melbourne, Australia.
-          </animated.p>
+          <animated.p style={pageTitleIn({ delay: 0 })}>{introduction}</animated.p>
           <ImageBox style={fadeIn({ delay: 600 })}>
             <img src={drawing} alt="line drawing of a man listening to music" />
           </ImageBox>
@@ -196,7 +194,8 @@ export const query = graphql`
   query {
     siteData: site {
       siteMetadata {
-        title
+        title,
+        description
       }
     }
 
