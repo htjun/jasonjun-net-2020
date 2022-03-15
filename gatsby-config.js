@@ -23,14 +23,6 @@ module.exports = {
         name: `Picks`,
         slug: `picks`,
       },
-      {
-        name: `Works`,
-        slug: `works`,
-      },
-      {
-        name: `About`,
-        slug: `about`,
-      },
     ],
     social: {
       twitter: `@jsonjun`,
