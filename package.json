@@ -11,6 +11,7 @@
     "@mdx-js/mdx": "^1.4.0",
     "@mdx-js/react": "^1.4.0",
     "@mdx-js/tag": "^0.20.3",
+    "@stitches/react": "^1.2.7",
     "babel-plugin-styled-components": "^2.0.2",
     "destyle.css": "^3.0.2",
     "dotenv": "^10.0.0",
