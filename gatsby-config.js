@@ -243,5 +243,13 @@ module.exports = {
     `gatsby-plugin-force-trailing-slashes`,
     `gatsby-plugin-react-svg`,
     'gatsby-plugin-extract-image-colors',
+    {
+      resolve: `gatsby-source-strapi`,
+      options: {
+        apiURL: process.env.STRAPI_API_URL,
+        accessToken: process.env.STRAPI_TOKEN,
+        collectionTypes: ['book'],
+      },
+    },
   ],
 }
