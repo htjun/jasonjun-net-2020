@@ -23,6 +23,14 @@ module.exports = {
         name: `Picks`,
         slug: `picks`,
       },
+      {
+        name: `Works`,
+        slug: `works`,
+      },
+      {
+        name: `About`,
+        slug: `about`,
+      },
     ],
     social: {
       twitter: `@jsonjun`,
@@ -86,7 +94,7 @@ module.exports = {
               urlOverrides: [
                 {
                   id: 'youtube',
-                  embedURL: videoId =>
+                  embedURL: (videoId) =>
                     `https://www.youtube-nocookie.com/embed/${videoId}`,
                 },
               ], //Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
@@ -137,7 +145,7 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.edges.map(edge => {
+              return allMdx.edges.map((edge) => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   data: edge.node.frontmatter.date,
