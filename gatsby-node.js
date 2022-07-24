@@ -37,18 +37,10 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
 
-        reading: allAirtable(
-          filter: {
-            table: { eq: "Source" }
-            data: { Type: { eq: "Book" }, Live: { eq: true } }
-          }
-          sort: { fields: data___Row, order: DESC }
-        ) {
+        reading: allStrapiBook(sort: { fields: createdAt }) {
           edges {
             node {
-              data {
-                Slug
-              }
+              slug
             }
           }
           totalCount
@@ -164,10 +156,10 @@ exports.createPages = ({ graphql, actions }) => {
       const nextBook = index === 0 ? null : books[index - 1].node
 
       createPage({
-        path: `/reading/${book.node.data.Slug}`,
+        path: `/reading/${book.node.slug}`,
         component: BookTemplate,
         context: {
-          slug: `${book.node.data.Slug}`,
+          slug: `${book.node.slug}`,
           previous: previousBook,
           next: nextBook,
         },

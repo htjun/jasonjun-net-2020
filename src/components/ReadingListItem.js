@@ -55,29 +55,22 @@ const ReadingListItemWrapper = styled(animated.div)`
   }
 `
 
-const ReadingListItem = props => {
+const ReadingListItem = (props) => {
   const { node, index, highlights } = props
 
   return (
     <ReadingListItemWrapper style={introTransition({ delay: 24 * index })}>
       <h2>
-        <Link to={`/reading/${node.data.Slug}`}>{node.data.Title}</Link>
+        <Link to={`/reading/${node.slug}`}>{node.title}</Link>
         <span className="author">
           <span className="dash">-</span>
-          {node.data.Author.map((person, i) => {
-            return (
-              <React.Fragment key={i}>
-                <span className="name">{person.data.Name}</span>
-                {i < node.data.Author.length - 1 ? ', ' : null}
-              </React.Fragment>
-            )
-          })}
+          <span className="name">{node.author}</span>
         </span>
       </h2>
 
       <div className="additional-cols">
-        <div className="format">{node.data.Format}</div>
-        <div className="lang">{node.data.Language}</div>
+        <div className="format">{node.format}</div>
+        <div className="lang">{node.language}</div>
         <div className="highlight">{highlights} highlights</div>
       </div>
     </ReadingListItemWrapper>

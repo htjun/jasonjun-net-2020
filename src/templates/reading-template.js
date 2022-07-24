@@ -13,19 +13,17 @@ const ReadingList = styled.section`
   margin-bottom: 48px;
 `
 
-const Reading = props => {
+const Reading = (props) => {
   const { data, pageContext } = props
   const books = data.books.edges
-  const bookCount = data.books.totalCount
-  const highlightCount = data.highlights.totalCount
 
   return (
     <Layout location={props.location} pageTitle="Reading">
       <SEO title="Reading" />
-      <PageMeta pageTitle="Reading" desc={`${bookCount} books`} />
+      <PageMeta pageTitle="Reading" desc={`${data.books.totalCount} books`} />
       <ReadingList>
         {books.map(({ node }, index) => {
-          const highlights = node.data.Quotes ? node.data.Quotes.length : 'No'
+          const highlights = node.highlight ? node.highlight.length : 'No'
 
           return (
             <ReadingListItem
@@ -45,47 +43,26 @@ const Reading = props => {
 export default Reading
 
 export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
-    books: allAirtable(
+  query ($skip: Int!, $limit: Int!) {
+    books: allStrapiBook(
       limit: $limit
       skip: $skip
-      filter: {
-        table: { eq: "Source" }
-        data: { Type: { eq: "Book" }, Live: { eq: true } }
-      }
-      sort: { fields: data___Row, order: DESC }
+      sort: { fields: createdAt, order: DESC }
     ) {
       edges {
         node {
           id
-          data {
-            Title
-            Status
-            Slug
-            Language
-            Format
-            Author {
-              data {
-                Name
-              }
-            }
-            Quotes {
-              id
-            }
+          title
+          status
+          slug
+          language
+          format
+          author
+          highlight {
+            id
           }
         }
       }
-      totalCount
-    }
-    highlights: allAirtable(
-      filter: {
-        table: { eq: "Quotes" }
-        data: {
-          Published: { eq: true }
-          Source: { elemMatch: { data: { Type: { eq: "Book" } } } }
-        }
-      }
-    ) {
       totalCount
     }
   }
