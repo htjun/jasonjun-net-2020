@@ -123,10 +123,10 @@ const Quote = styled.blockquote`
   }
 `
 
-const Book = props => {
-  const book = props.data.airtable
-  const coverImage = book.data.Cover
-  const quotes = book.data.Quotes
+const Book = (props) => {
+  const book = props.data.strapiBook
+  const coverImage = book.coverImage
+  const highlights = book.highlight
 
   return (
     <Layout location={props.location} bookTemplate>
@@ -135,59 +135,46 @@ const Book = props => {
           {coverImage !== null && (
             <BookCover>
               <GatsbyImage
-                image={coverImage.localFiles[0].childImageSharp.gatsbyImageData}
+                image={coverImage.localFile.childImageSharp.gatsbyImageData}
               />
             </BookCover>
           )}
           <BookInfo>
             <animated.h1 style={introTransition({ delay: 20 })}>
-              {book.data.Full_title}
+              {book.fullTitle}
             </animated.h1>
             <ul>
               <animated.li style={introTransition({ delay: 50 })}>
                 <small>Author</small>
-                <div>
-                  {book.data.Author.map((person, i) => {
-                    return (
-                      <React.Fragment key={i}>
-                        <span>{person.data.Name}</span>
-                        {i < book.data.Author.length - 1 ? ', ' : null}
-                      </React.Fragment>
-                    )
-                  })}
-                </div>
+                <div>{book.author}</div>
               </animated.li>
               <animated.li style={introTransition({ delay: 100 })}>
                 <small>Published year</small>
-                <div>{book.data.Published_year}</div>
+                <div>{book.publishedYear}</div>
               </animated.li>
               <animated.li style={introTransition({ delay: 150 })}>
                 <small>Category</small>
-                <div>{book.data.Genre}</div>
+                <div>{book.genre}</div>
               </animated.li>
               <animated.li style={introTransition({ delay: 200 })}>
                 <small>Status</small>
-                <div>{book.data.Status}</div>
+                <div>{book.status}</div>
               </animated.li>
             </ul>
           </BookInfo>
         </BookHeader>
         <Highlights style={introTransition({ delay: 250 })}>
-          <h3>{`${quotes ? quotes.length : 0} Highlights`}</h3>
-          {quotes &&
-            quotes.map((quote, index) => {
+          <h3>{`${highlights ? highlights.length : 0} Highlights`}</h3>
+          {highlights &&
+            highlights.map((highlight, index) => {
               return (
                 <Quote key={index}>
-                  <div className="quote">{quote.data.Content}</div>
-                  {quote.data.Person &&
-                    quote.data.Person.map((person, i) => {
-                      return (
-                        <div className="names" key={i}>
-                          <span className="name">{person.data.Name}</span>
-                          {i < quote.data.Person.length - 1 ? ', ' : null}
-                        </div>
-                      )
-                    })}
+                  <div className="quote">{highlight.quote}</div>
+                  {highlight.originallyBy && (
+                    <div className="names" key={highlight.id}>
+                      <span className="name">{highlight.originallyBy}</span>
+                    </div>
+                  )}
                 </Quote>
               )
             })}
@@ -200,37 +187,25 @@ const Book = props => {
 export default Book
 
 export const bookQuery = graphql`
-  query($slug: String!) {
-    airtable(
-      data: { Slug: { eq: $slug }, Type: { eq: "Book" }, Live: { eq: true } }
-    ) {
-      data {
-        Full_title
-        Author {
-          data {
-            Name
+  query ($slug: String!) {
+    strapiBook(slug: { eq: $slug }) {
+      title
+      fullTitle
+      author
+      coverImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
           }
         }
-        Cover {
-          localFiles {
-            childImageSharp {
-              gatsbyImageData(width: 512)
-            }
-          }
-        }
-        Published_year
-        Genre
-        Status
-        Quotes {
-          data {
-            Content
-            Person {
-              data {
-                Name
-              }
-            }
-          }
-        }
+      }
+      publishedYear
+      genre
+      status
+      highlight {
+        quote
+        originallyBy
+        id
       }
     }
   }
