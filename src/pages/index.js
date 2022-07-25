@@ -108,14 +108,14 @@ const IndexHeader = styled(animated.div)`
 const SectionList = styled(animated.section)`
   ${style.MaxWidthStyle}
 
-  ${props =>
+  ${(props) =>
     props.marginBottom &&
     css`
       margin-bottom: 72px;
     `}
 `
 
-const Index = props => {
+const Index = (props) => {
   const { data } = props
   const siteTitle = data.siteData.siteMetadata.title
   const introduction = data.siteData.siteMetadata.description
@@ -131,7 +131,9 @@ const Index = props => {
       />
       <HeroOuter>
         <HeroInner>
-          <animated.p style={pageTitleIn({ delay: 0 })}>{introduction}</animated.p>
+          <animated.p style={pageTitleIn({ delay: 0 })}>
+            {introduction}
+          </animated.p>
           <ImageBox style={fadeIn({ delay: 600 })}>
             <img src={drawing} alt="line drawing of a man listening to music" />
           </ImageBox>
@@ -162,7 +164,7 @@ const Index = props => {
       </IndexHeader>
       <SectionList style={introTransition({ delay: 1000 })}>
         {books.map(({ node }, index) => {
-          const highlights = node.data.Quotes ? node.data.Quotes.length : 'No'
+          const highlights = node.highlight ? node.highlight.length : 'No'
 
           return (
             <ReadingListItem
@@ -194,7 +196,7 @@ export const query = graphql`
   query {
     siteData: site {
       siteMetadata {
-        title,
+        title
         description
       }
     }
@@ -220,34 +222,25 @@ export const query = graphql`
       }
     }
 
-    recentBooks: allAirtable(
+    recentBooks: allStrapiBook(
       limit: 7
-      filter: {
-        table: { eq: "Source" }
-        data: { Type: { eq: "Book" }, Live: { eq: true } }
-      }
-      sort: { fields: data___Row, order: DESC }
+      sort: { fields: createdAt, order: DESC }
     ) {
       edges {
         node {
           id
-          data {
-            Title
-            Status
-            Slug
-            Language
-            Format
-            Author {
-              data {
-                Name
-              }
-            }
-            Quotes {
-              id
-            }
+          title
+          status
+          slug
+          language
+          format
+          author
+          highlight {
+            id
           }
         }
       }
+      totalCount
     }
 
     recentPicks: allNotion(

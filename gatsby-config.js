@@ -201,30 +201,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-airtable`,
-      options: {
-        apiKey: process.env.AIRTABLE_API_KEY,
-        tables: [
-          {
-            baseId: 'app1S2IJhTv7alno4',
-            tableName: 'Quotes',
-            tableLinks: ['Person', 'Source'],
-          },
-          {
-            baseId: 'app1S2IJhTv7alno4',
-            tableName: 'People',
-          },
-          {
-            baseId: 'app1S2IJhTv7alno4',
-            tableName: 'Source',
-            tableView: 'All',
-            tableLinks: ['Author', 'Quotes'],
-            mapping: { Cover: 'fileNode' },
-          },
-        ],
-      },
-    },
-    {
       resolve: `gatsby-plugin-web-font-loader`,
       options: {
         google: {
