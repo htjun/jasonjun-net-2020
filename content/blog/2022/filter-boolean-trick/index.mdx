@@ -1,0 +1,33 @@
+---
+title: 'Using filter(Boolean) to filter out falsey items'
+date: '2022-12-31'
+lang: 'EN'
+published: true
+description: 'Use the filter(Boolean) trick to clean up arrays and remove unwanted null and undefined values'
+---
+
+In JavaScript, `null` and `undefined` values in arrays can cause problems, as they can cause errors or unexpected behavior when trying to iterate over the array. To avoid these issues, it is often necessary to remove them from arrays.
+
+One way to do this is by using the `filter()` method and passing in a `Boolean` value as the callback function. This trick, also known as the `filter(Boolean)` trick, allows you to quickly filter out null and undefined values from an array.
+
+For example, consider the following array:
+
+```javascript
+const values = [1, null, 3, undefined, 5, 6, 7, 8, 9, 10]
+```
+
+Those falsey values may occur due to a flaw in the validation process or simply as an error.
+
+```javascript
+const filteredValues = values.filter(Boolean)
+```
+
+JavaScript implicitly understands that `Boolean` takes a single argument and automatically passes the argument. The `Boolean` object converts a value to a boolean, with the value true being returned if the original value is 'truthy' and false being returned if the original value is 'falsy'.
+
+As a result, the filteredValues array will contain only elements that are not null or undefined:
+
+```javascript
+console.log(filteredValues) // [1, 3, 5, 6, 7, 8, 9, 10]
+```
+
+Using this trick can be helpful when you need to quickly remove null or undefined values from an array. It can also make the code more readable and easier to understand, as the condition used to filter the array is clearly visible, and you don't need to include an `if` statement specifically to check for `null` values.
