@@ -1,0 +1,43 @@
+---
+title: 'Removing array duplicates with Set'
+date: '2023-01-12'
+lang: 'EN'
+published: true
+description:
+  'Removing duplicate elements from arrays in JavaScript efficiently with Set'
+---
+
+Removing duplicates from an array is a common task in JavaScript, and there are
+a few different ways to do it. One simple way is to use the `Set` object.
+
+A `Set` is a collection of unique values. When you add a value to a set, it will
+only be added if it doesn't already exist in the set. This means that if you add
+an array of values to a set, any duplicates will be automatically removed.
+
+Here's some example code:
+
+```js
+// Array with duplicates
+const numbers = [1, 2, 3, 4, 4, 5, 5, 6]
+
+// Create a new Set from the array
+const uniqueNumbers = new Set(numbers)
+
+console.log(uniqueNumbers) // Set { 1, 2, 3, 4, 5, 6 }
+```
+
+You can also convert the set back to an array if that's the format you need:
+
+```js
+const uniqueNumbersArray = [...uniqueNumbers]
+console.log(uniqueNumbersArray) // [1, 2, 3, 4, 5, 6 ]
+```
+
+If it's a repeating task in your code, you can create a function for it:
+
+```js
+function removeDuplicates(list) {
+  const set = new Set(list)
+  return [...set]
+}
+```
