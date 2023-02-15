@@ -119,6 +119,7 @@ const Index = (props) => {
   const { data } = props
   const siteTitle = data.siteData.siteMetadata.title
   const introduction = data.siteData.siteMetadata.description
+  const works = data.featuredWorks.edges
   const posts = data.recentPosts.edges
   const books = data.recentBooks.edges
   const picks = data.recentPicks.edges
@@ -139,6 +140,24 @@ const Index = (props) => {
           </ImageBox>
         </HeroInner>
       </HeroOuter>
+      <IndexHeader style={introTransition({ delay: 500 })}>
+        <h2>
+          <Link to="/works/">Works</Link>
+        </h2>
+      </IndexHeader>
+      <SectionList style={introTransition({ delay: 600 })}>
+        {works.map(({ node }, index) => {
+          const title = node.frontmatter.title || node.fields.slug
+          return (
+            <WorkListItem
+              node={node}
+              index={index}
+              title={title}
+              key={node.id}
+            />
+          )
+        })}
+      </SectionList>
       <IndexHeader style={introTransition({ delay: 700 })}>
         <h2>
           <Link to="/blog/">Writing</Link>
@@ -274,6 +293,36 @@ export const query = graphql`
         }
       }
       totalCount
+    }
+
+    featuredWorks: allMdx(
+      filter: {
+        frontmatter: {
+          published: { eq: true }
+          type: { eq: "work" }
+          favourite: { eq: true }
+        }
+      }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 7
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "YYYY")
+            description
+            responsibilities
+            favourite
+            no_content
+            outlink
+          }
+          fields {
+            slug
+          }
+        }
+      }
     }
   }
 `
