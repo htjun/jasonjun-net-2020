@@ -4,25 +4,30 @@ title: 'Parallax Magritte'
 date: '2013-03-01'
 company: 'Personal project'
 responsibilities:
-  - 'Concept'
   - 'Design'
   - 'Development'
-description: 'Designed and developed this experimental website as a personal project while studying at Sydney University.'
+description:
+  "Experimental website converting Rene Magritte's works to 3D using Parallax.js"
 theme-color: '#303030'
-favourite: false
+favourite: true
 published: true
 ---
 
-import { ImageContainer, VideoContainer, CustomCaption } from 'components/ContentBlocks'
+import {
+  ImageContainer,
+  VideoContainer,
+  CustomCaption,
+} from 'components/ContentBlocks'
 
-Parallax Magritte is a web experiment to make the art works of Rene Magritte to be like 3D space, so the viewers can see the unseen part of the original painting by tilting their tablet or smartphone.
+Parallax Magritte is a web experiment to make the art works of Rene Magritte to
+be like 3D space, so the viewers can see the unseen part of the original
+painting by tilting their tablet or smartphone.
 
 <ImageContainer noShadow noBorder noCaption>
 
 ![Intro](works-magritte-01.png)
 
 </ImageContainer>
-
 
 <VideoContainer>
 
@@ -36,7 +41,11 @@ Parallax Magritte is a web experiment to make the art works of Rene Magritte to 
 
 </ImageContainer>
 
-To build a 3D space from a plane painting, first I needed to separate each layer of the painting by using Photoshop. The tricky part of this step was filling the empty spots by copying-and-pasting from another similar part of the painting. Some layers of the painting needed to be expanded so they could have some extra space to show when the image is moving.
+To build a 3D space from a plane painting, first I needed to separate each layer
+of the painting by using Photoshop. The tricky part of this step was filling the
+empty spots by copying-and-pasting from another similar part of the painting.
+Some layers of the painting needed to be expanded so they could have some extra
+space to show when the image is moving.
 
 <ImageContainer size="medium" noBorder>
 
@@ -50,7 +59,9 @@ To build a 3D space from a plane painting, first I needed to separate each layer
 
 </ImageContainer>
 
-Making the separated images into a 3D space using Parallax.js was mostly about sizing and positioning the each layer with CSS, so that each painting could demonstrate the best parallax effect within given boundaries.
+Making the separated images into a 3D space using Parallax.js was mostly about
+sizing and positioning the each layer with CSS, so that each painting could
+demonstrate the best parallax effect within given boundaries.
 
 <VideoContainer maxSize={520}>
 
@@ -62,9 +73,7 @@ Built with Parallax.js by Matthew Wagerfield & Claudio Guglieri.
 
 <ImageContainer grid={4} noCaption>
 
-![Snapshot](works-magritte-pic-01.jpg)
-![Snapshot](works-magritte-pic-02.jpg)
-![Snapshot](works-magritte-pic-03.jpg)
-![Snapshot](works-magritte-pic-04.jpg)
+![Snapshot](works-magritte-pic-01.jpg) ![Snapshot](works-magritte-pic-02.jpg)
+![Snapshot](works-magritte-pic-03.jpg) ![Snapshot](works-magritte-pic-04.jpg)
 
 </ImageContainer>
