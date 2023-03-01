@@ -140,24 +140,6 @@ const Index = (props) => {
           </ImageBox>
         </HeroInner>
       </HeroOuter>
-      <IndexHeader style={introTransition({ delay: 500 })}>
-        <h2>
-          <Link to="/works/">Works</Link>
-        </h2>
-      </IndexHeader>
-      <SectionList style={introTransition({ delay: 600 })}>
-        {works.map(({ node }, index) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <WorkListItem
-              node={node}
-              index={index}
-              title={title}
-              key={node.id}
-            />
-          )
-        })}
-      </SectionList>
       <IndexHeader style={introTransition({ delay: 700 })}>
         <h2>
           <Link to="/blog/">Writing</Link>
@@ -195,14 +177,32 @@ const Index = (props) => {
           )
         })}
       </SectionList>
-      <IndexHeader style={introTransition({ delay: 1100 })}>
+      <IndexHeader style={introTransition({ delay: 1000 })}>
         <h2>
           <Link to="/picks/">Picks</Link>
         </h2>
       </IndexHeader>
-      <SectionList style={introTransition({ delay: 1200 })} marginBottom>
+      <SectionList style={introTransition({ delay: 1000 })} marginBottom>
         {picks.map(({ node }, index) => {
           return <PicksListItem node={node} index={index} key={node.id} />
+        })}
+      </SectionList>
+      <IndexHeader style={introTransition({ delay: 1000 })}>
+        <h2>
+          <Link to="/works/">Works</Link>
+        </h2>
+      </IndexHeader>
+      <SectionList style={introTransition({ delay: 1000 })}>
+        {works.map(({ node }, index) => {
+          const title = node.frontmatter.title || node.fields.slug
+          return (
+            <WorkListItem
+              node={node}
+              index={index}
+              title={title}
+              key={node.id}
+            />
+          )
         })}
       </SectionList>
     </Layout>
