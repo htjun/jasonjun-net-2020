@@ -1,0 +1,137 @@
+---
+title: 'Detecting toxicity in text with TensorFlow.js'
+date: '2023-03-02'
+lang: 'EN'
+published: true
+description:
+  'Creating a React hook for detecting toxicity in text with TensorFlow.js'
+---
+
+During my work on a recent side project, Rephraser AI, I discovered that the
+GPT-3 API had a safety setting for content toxicity. If user input contained
+toxic content, sometimes the API would ignore the prompt altogether and return
+warning messages instead of rephrases. To communicate this to the users, I
+developed this `useToxicity` React hook for detecting toxic messages.
+
+I will walk through each step of the process, including loading the toxicity
+model, creating the hook, and using it in a React component.
+
+## Set up the project
+
+We will use `create-react-app` for this demo.
+
+```bash
+npx create-react-app use-toxicity-demo
+```
+
+Next, navigate to the project directory and install the required dependencies:
+
+```bash
+cd use-toxicity-demo
+npm install @tensorflow/tfjs @tensorflow-models/toxicity
+
+```
+
+We will use `@tensorflow/tfjs` for loading the model and
+`@tensorflow-models/toxicity` for detecting toxicity.
+
+## Create the hook
+
+Now we can create the `useToxicity` hook. This hook takes a string as an
+argument and returns an object with two boolean values: `loading` and `isToxic`.
+The `loading` value indicates whether the toxicity detection process is still
+running, while the `isToxic` value indicates whether the message is toxic or
+not.
+
+```js
+import { useEffect, useState } from 'react'
+import '@tensorflow/tfjs'
+import * as toxicity from '@tensorflow-models/toxicity'
+
+const useToxicity = (text) => {
+  const [loading, setLoading] = useState(true)
+  const [isToxic, setIsToxic] = useState(false)
+  const threshold = 0.9
+
+  useEffect(() => {
+    const checkToxicity = async () => {
+      setLoading(true)
+      const model = await toxicity.load(threshold, [])
+      const predictions = await model.classify(text)
+      const toxicPredictions = predictions.filter((p) => p.results[0].match)
+      setIsToxic(toxicPredictions.length > 0)
+      setLoading(false)
+    }
+    checkToxicity()
+  }, [text])
+
+  return { loading, isToxic }
+}
+
+export default useToxicity
+```
+
+To specify which categories of toxicity you want to classify your text against,
+you can pass a list of labels as the second argument for `toxicity.load()`.
+However, if you only need a simple binary classification of whether a message is
+toxic or not, you can omit the labels and pass an empty array, as done in this
+example.
+
+Additionally, the `model.classify()` method returns an array of predictions,
+each of which is an object with the following structure:
+
+```js
+{
+  label: 'identity_attack',
+  results: [
+    {
+      match: true,
+      probabilities: [0.97, 0.01, 0.02, 0.01, 0.01, 0.01, 0.01, 0.01],
+    }
+  ]
+}
+```
+
+This information can be used for more specific toxicity detection if needed.
+
+## Example usage of the hook
+
+The code below is a simple example of using the `useToxicity()` hook in a React
+component.
+
+```jsx
+import useToxicity from './useToxicity'
+
+const TextInput = () => {
+  const [inputText, setInputText] = useState('')
+  const [textToCheck, setTextToCheck] = useState('')
+  const { loading, isToxic } = useToxicity(textToCheck)
+
+  const handleButtonClick = (e) => {
+    e.preventDefault()
+    setTextToCheck(inputText)
+  }
+
+  return (
+    <div>
+      <label htmlFor="text-input">Enter your message:</label>
+      <input
+        type="text"
+        id="text-input"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+      />
+      <button onClick={handleButtonClick}>Check toxicity</button>
+      {loading && <div>Loading...</div>}
+      {!loading && !isToxic && <div>Your message is clean!</div>}
+      {!loading && isToxic && <div>Warning: Your message is toxic!</div>}
+    </div>
+  )
+}
+
+export default TextInput
+```
+
+To avoid running toxicity detection on every keystroke, a separate `textToCheck`
+state variable is used for toxicity checking. This is because the toxicity
+detection process can take some time.
